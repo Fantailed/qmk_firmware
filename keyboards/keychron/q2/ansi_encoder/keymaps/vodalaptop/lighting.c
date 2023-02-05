@@ -27,9 +27,18 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     return false;
 }
 
+// Highlights different functional zones by color
 void set_kb_sys_colors() {
     // Default white
     rgb_matrix_set_color_all(RGB_WHITE);
+
+    // Macros
+    rgb_matrix_set_color(1, RGB_SPRINGGREEN);
+    rgb_matrix_set_color(2, RGB_SPRINGGREEN);
+    rgb_matrix_set_color(3, RGB_SPRINGGREEN);
+    rgb_matrix_set_color(4, RGB_SPRINGGREEN);
+    rgb_matrix_set_color(5, RGB_SPRINGGREEN);
+    rgb_matrix_set_color(6, RGB_SPRINGGREEN);
 
     // prev/playpause/next
     rgb_matrix_set_color(7, RGB_CORAL);

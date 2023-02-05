@@ -18,6 +18,7 @@
 #include "config.h"
 #include "helper_functions.h"
 #include "lighting.h"
+#include "secret_macros.h"
 
 #define KC_TASK LGUI(KC_TAB)
 #define KC_FLXP LGUI(KC_E)
@@ -28,7 +29,9 @@ enum custom_kc {
     KC_KNOB  = LT(0, KC_1),
     // Aliases for normal keycodes
     KC_SHCL  = MT(MOD_LSFT, KC_CAPS),  // Shift/Caps-Lock
-    KC_VBMIN = RCTL(KC_F)
+    KC_VBMIN = RCTL(KC_F),
+    // Placeholders
+    KC_SM0
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -41,25 +44,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LCTL, KC_LWIN, KC_LALT,                            KC_SPC,                             KC_RALT, TT(KB_SYS), TT(FN2),   KC_LEFT, KC_DOWN, KC_RGHT),
 
     [KB_SYS] = LAYOUT_ansi_67(
-        KC_GRV,  KC_BRID, KC_BRIU, KC_TASK, KC_FLXP, RGB_VAD, RGB_VAI, KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE, KC_VOLD,  KC_VOLU,   _______,          RGB_TOG,
-        RGB_TOG, RGB_MOD, RGB_VAI, RGB_HUI, RGB_SAI, RGB_SPI, _______, _______, _______, _______, _______, _______,  _______,   _______,          _______,
-        _______, RGB_RMOD,RGB_VAD, RGB_HUD, RGB_SAD, RGB_SPD, _______, _______, _______, _______, _______, _______,             _______,          _______,
+        _______, _______, _______, _______, _______, _______, _______, KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE, KC_VOLD,  KC_VOLU,   _______,          QK_BOOT,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______,   _______,          _______,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,             _______,          _______,
         _______,          _______, _______, _______, _______, _______, NK_TOGG, _______, _______, _______, _______,             _______, _______,
-        _______, _______, _______,                            _______,                            _______, _______,  _______,   _______, _______, _______),
+        _______, _______, KC_SM0 ,                            _______,                            _______, _______,  _______,   _______, _______, _______),
 
     [FN2] = LAYOUT_ansi_67(
-        KC_TILD, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,   KC_F12,    _______,          QK_BOOT,
-        RGB_TOG, RGB_MOD, RGB_VAI, RGB_HUI, RGB_SAI, RGB_SPI, _______, _______, _______, _______, _______, _______,  _______,   _______,          _______,
-        _______, RGB_RMOD,RGB_VAD, RGB_HUD, RGB_SAD, RGB_SPD, _______, _______, _______, _______, _______, _______,             _______,          _______,
+        KC_TILD, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,   KC_F12,    _______,          _______,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______,   _______,          _______,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,             _______,          _______,
         _______,          _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,             _______, KC_PGUP,
         _______, _______, _______,                            _______,                            KC_RCTL, _______,  _______,   KC_HOME, KC_PGDN, KC_END)
 };
 
 #if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
-    [BASE] = { ENCODER_CCW_CW(LCTL(KC_PGUP), LCTL(KC_PGDN)) },
-    [KB_SYS]     = { ENCODER_CCW_CW(RGB_VAD, RGB_VAI) },
-    [FN2]     = { ENCODER_CCW_CW(_______, _______) },
+    [BASE]   = { ENCODER_CCW_CW(LCTL(KC_PGUP), LCTL(KC_PGDN)) },
+    [KB_SYS] = { ENCODER_CCW_CW(RGB_VAD, RGB_VAI) },
+    [FN2]    = { ENCODER_CCW_CW(_______, _______) },
 };
 #endif
 
@@ -88,8 +91,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return process_tap_hold(record, KC_HOME, KC_END);
         case KC_KNOB:
             return process_tap_hold(record, KC_VBMIN, QK_BOOT);
+#ifdef SECRET_MACRO_0
+        case KC_SM0:
+            if (record->event.pressed) {
+                SECRET_MACRO_0;
+                return false;
+            }
+            return true;
+#endif
         default:
             // Just let QMK handle the event normally
             return true;
     }
+    return true;
 }
