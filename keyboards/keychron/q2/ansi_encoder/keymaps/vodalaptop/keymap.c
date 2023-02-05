@@ -17,6 +17,7 @@
 #include QMK_KEYBOARD_H
 #include "config.h"
 #include "helper_functions.h"
+#include "lighting.h"
 
 enum layers {
     BASE,
@@ -75,7 +76,7 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case KC_SHCL:
-            return 100;
+            return 110;
         case KC_POS:
             return 150;
         case KC_KNOB:
