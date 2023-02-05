@@ -49,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______,   _______,          _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,             _______,          _______,
         _______,          _______, _______, _______, _______, _______, NK_TOGG, _______, _______, _______, _______,             _______, _______,
-        _______, _______, KC_SM0 ,                            _______,                            _______, _______,  _______,   _______, _______, _______),
+        _______, _______, _______,                            _______,                            _______, _______,  _______,   _______, _______, _______),
 
     [FN2] = LAYOUT_ansi_67(
         KC_TILD, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,   KC_F12,    _______,          _______,
@@ -102,6 +102,40 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #endif
         default:
             // Just let QMK handle the event normally
+            return true;
+    }
+    return true;
+}
+
+// Combo keys
+enum combos {
+#ifdef SECRET_MACRO_0
+    DELPOS_SM0,
+#endif
+    TEST_COMBO,
+    COMBO_LENGTH,
+};
+
+uint16_t COMBO_LEN = COMBO_LENGTH;
+
+const uint16_t PROGMEM delpos_combo0[] = {KC_DEL, KC_POS, COMBO_END};
+const uint16_t PROGMEM test_combo[] = {KC_J, KC_K, COMBO_END};
+
+combo_t key_combos[] = {
+#ifdef SECRET_MACRO_0
+    [DELPOS_SM0] = COMBO(delpos_combo0, KC_SM0),
+#endif
+    [TEST_COMBO] = COMBO(test_combo, KC_W),
+};
+
+bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
+    // Scope combos to layers
+    switch (combo_index) {
+        case DELPOS_SM0:
+            return layer_state_is(KB_SYS);
+        case TEST_COMBO:
+            return layer_state_is(KB_SYS);
+        default:
             return true;
     }
     return true;

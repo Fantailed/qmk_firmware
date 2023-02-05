@@ -4,6 +4,8 @@
 #define TAPPING_TERM 150        // Default tapping term (a.k.a. hold duration)
 #define TAPPING_TERM_PER_KEY
 
+#define COMBO_SHOULD_TRIGGER
+
 // Disable unneeded RGB animations (saves memory)
 #undef ENABLE_RGB_MATRIX_BREATHING
 #undef ENABLE_RGB_MATRIX_BAND_SPIRAL_VAL
