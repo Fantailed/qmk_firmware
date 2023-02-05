@@ -16,6 +16,7 @@
 
 #include QMK_KEYBOARD_H
 #include "config.h"
+#include "helper_functions.h"
 
 enum layers {
     WIN_BASE,
@@ -27,9 +28,9 @@ enum layers {
 #define KC_FLXP LGUI(KC_E)
 
 enum custom_kc {
-    KC_POS,
-    KC_KNOB,
-    KC_RDPL = LCTL(LALT(KC_HOME))
+    KC_POS  = LT(0, KC_0),
+    KC_KNOB = LT(0, KC_1),
+    KC_VBMIN = RCTL(KC_F)
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -58,7 +59,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 #if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
-    [WIN_BASE] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
+    [WIN_BASE] = { ENCODER_CCW_CW(LCTL(LSFT(KC_TAB)), LCTL(KC_TAB)) },
     [_FN2]     = { ENCODER_CCW_CW(RGB_VAD, RGB_VAI) },
     [FUN]     = { ENCODER_CCW_CW(_______, _______) },
 };
@@ -67,11 +68,11 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
 
 // =============================================================================
 
-
+// Define per-key tapping terms
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case KC_POS:
-            return 2000;
+            return 150;
         case KC_KNOB:
             return 5000;
         default:
@@ -80,35 +81,15 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 }
 
 
+// Define per-key special handling
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    static uint16_t pos_timer = ~0;
-
     switch (keycode) {
         case KC_POS:
-            // Button Down
-            if (record->event.pressed) {
-                    pos_timer = timer_read();
-            // Button Up
-            } else {
-                // When tapped
-                if (timer_elapsed(pos_timer) < TAPPING_TERM) {
-                    tap_code16(KC_HOME);
-                // When held
-                } else {
-                    tap_code16(KC_END);
-                }
-                pos_timer = 0;
-            }
-            return false;
+            return define_tap_hold(record, KC_HOME, KC_END);
         case KC_KNOB:
-            // When tapped
-            if (record->event.pressed && record->tap.count > 0) {
-                tap_code16(KC_T);
-            // When held for 5s or longer
-            } else if (record->event.pressed) {
-                tap_code16(KC_H);
-            }
-            return false;
+            return define_tap_hold(record, KC_VBMIN, QK_BOOT);
+        default:
+            // Just let QMK handle the event normally
+            return true;
     }
-    return true;
 }
