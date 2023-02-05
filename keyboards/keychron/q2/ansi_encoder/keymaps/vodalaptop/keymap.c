@@ -17,24 +17,13 @@
 #include QMK_KEYBOARD_H
 #include "config.h"
 #include "custom_def.h"
+#include "g/keymap_combo.h"
 #include "helper_functions.h"
 #include "lighting.h"
 #include "secret_macros.h"
 
 #define KC_TASK LGUI(KC_TAB)
 #define KC_FLXP LGUI(KC_E)
-
-enum custom_kc {
-    // LT(0, ...) keycodes are dummies used for special handling further down
-    KC_POS   = LT(0, KC_0),
-    KC_KNOB  = LT(0, KC_1),
-    // Aliases for normal keycodes
-    KC_SHCL  = MT(MOD_LSFT, KC_CAPS),  // Shift/Caps-Lock
-    KC_VBMIN = RCTL(KC_F),
-    // Placeholders
-    KC_SM0,     // Secret Macro 0
-    KC_CHL,     // hl-combo
-};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -101,12 +90,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return true;
 #endif
-        case KC_CHL:
-            if (record->event.pressed) {
-                tap_code16(KC_HOME);
-                tap_code16(LSFT(KC_END));
-                return false;
-            }
         default:
             // Just let QMK handle the event normally
             return true;
@@ -115,32 +98,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 // Combo keys
-enum combos {
-#ifdef SECRET_MACRO_0
-    DELPOS_SM0,
-#endif
-    HL_LINE,
-    COMBO_LENGTH,
-};
-
-uint16_t COMBO_LEN = COMBO_LENGTH;
-
-const uint16_t PROGMEM delpos_combo0[] = {KC_DEL, KC_POS, COMBO_END};
-const uint16_t PROGMEM hl_select_line[] = {KC_H, KC_L, COMBO_END};
-
-combo_t key_combos[] = {
-#ifdef SECRET_MACRO_0
-    [DELPOS_SM0] = COMBO(delpos_combo0, KC_SM0),
-#endif
-    [HL_LINE] = COMBO(hl_select_line, KC_CHL),
-};
-
 bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
     // Scope combos to layers
     switch (combo_index) {
         case DELPOS_SM0:
             return layer_state_is(KB_SYS);
-        case HL_LINE:
+        case HL_EXPAND:
+        case JK_SHRINK:
+        case HJ_BEGIN:
+        case KL_END:
             return layer_state_is(BASE);
         default:
             return true;
