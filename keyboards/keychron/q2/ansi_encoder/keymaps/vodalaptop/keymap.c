@@ -54,7 +54,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         RGB_TOG, RGB_MOD, RGB_VAI, RGB_HUI, RGB_SAI, RGB_SPI, _______, _______, _______, _______, _______, _______,  _______,   _______,          _______,
         _______, RGB_RMOD,RGB_VAD, RGB_HUD, RGB_SAD, RGB_SPD, _______, _______, _______, _______, _______, _______,             _______,          _______,
         _______,          _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,             _______, KC_PGUP,
-        _______, _______, _______,                            _______,                            _______, _______,  _______,   KC_HOME, KC_PGDN, KC_END)
+        _______, _______, _______,                            _______,                            KC_RCTL, _______,  _______,   KC_HOME, KC_PGDN, KC_END)
 };
 
 #if defined(ENCODER_MAP_ENABLE)
