@@ -19,12 +19,6 @@
 #include "helper_functions.h"
 #include "lighting.h"
 
-enum layers {
-    BASE,
-    KB_SYS,
-    FN2
-};
-
 #define KC_TASK LGUI(KC_TAB)
 #define KC_FLXP LGUI(KC_E)
 

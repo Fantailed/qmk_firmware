@@ -1,9 +1,13 @@
 #pragma once
 
+enum layers {
+    BASE,
+    KB_SYS,
+    FN2
+};
+
 #define TAPPING_TERM 150
 #define TAPPING_TERM_PER_KEY
-
-// Lighting
 
 // Disable unneeded RGB animations (saves memory)
 #undef ENABLE_RGB_MATRIX_BREATHING
