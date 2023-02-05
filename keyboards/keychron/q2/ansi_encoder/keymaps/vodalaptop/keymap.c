@@ -16,6 +16,7 @@
 
 #include QMK_KEYBOARD_H
 #include "config.h"
+#include "custom_def.h"
 #include "helper_functions.h"
 #include "lighting.h"
 #include "secret_macros.h"

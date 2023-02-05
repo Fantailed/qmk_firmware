@@ -1,11 +1,5 @@
 #pragma once
 
-enum layers {
-    BASE,
-    KB_SYS,
-    FN2
-};
-
 #define TAPPING_TOGGLE 1        // So that layer tap-toggle works immediately
 #define TAPPING_TERM 150        // Default tapping term (a.k.a. hold duration)
 #define TAPPING_TERM_PER_KEY
