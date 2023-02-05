@@ -32,7 +32,8 @@ enum custom_kc {
     KC_SHCL  = MT(MOD_LSFT, KC_CAPS),  // Shift/Caps-Lock
     KC_VBMIN = RCTL(KC_F),
     // Placeholders
-    KC_SM0
+    KC_SM0,     // Secret Macro 0
+    KC_CHL,     // hl-combo
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -100,6 +101,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return true;
 #endif
+        case KC_CHL:
+            if (record->event.pressed) {
+                tap_code16(KC_HOME);
+                tap_code16(LSFT(KC_END));
+                return false;
+            }
         default:
             // Just let QMK handle the event normally
             return true;
@@ -112,20 +119,20 @@ enum combos {
 #ifdef SECRET_MACRO_0
     DELPOS_SM0,
 #endif
-    TEST_COMBO,
+    HL_LINE,
     COMBO_LENGTH,
 };
 
 uint16_t COMBO_LEN = COMBO_LENGTH;
 
 const uint16_t PROGMEM delpos_combo0[] = {KC_DEL, KC_POS, COMBO_END};
-const uint16_t PROGMEM test_combo[] = {KC_J, KC_K, COMBO_END};
+const uint16_t PROGMEM hl_select_line[] = {KC_H, KC_L, COMBO_END};
 
 combo_t key_combos[] = {
 #ifdef SECRET_MACRO_0
     [DELPOS_SM0] = COMBO(delpos_combo0, KC_SM0),
 #endif
-    [TEST_COMBO] = COMBO(test_combo, KC_W),
+    [HL_LINE] = COMBO(hl_select_line, KC_CHL),
 };
 
 bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
@@ -133,8 +140,8 @@ bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode
     switch (combo_index) {
         case DELPOS_SM0:
             return layer_state_is(KB_SYS);
-        case TEST_COMBO:
-            return layer_state_is(KB_SYS);
+        case HL_LINE:
+            return layer_state_is(BASE);
         default:
             return true;
     }
