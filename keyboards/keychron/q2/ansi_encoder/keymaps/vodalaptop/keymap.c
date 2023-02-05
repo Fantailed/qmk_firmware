@@ -28,18 +28,21 @@ enum layers {
 #define KC_FLXP LGUI(KC_E)
 
 enum custom_kc {
-    KC_POS  = LT(0, KC_0),
-    KC_KNOB = LT(0, KC_1),
+    // LT(0, ...) keycodes are dummies used for special handling further down
+    KC_POS   = LT(0, KC_0),
+    KC_KNOB  = LT(0, KC_1),
+    // Aliases for normal keycodes
+    KC_SHCL  = MT(MOD_LSFT, KC_CAPS),  // Shift/Caps-Lock
     KC_VBMIN = RCTL(KC_F)
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [BASE] = LAYOUT_ansi_67(
-        KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,    KC_EQL,    KC_BSPC,          KC_KNOB,
-        KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC,    KC_RBRC,   KC_BSLS,          KC_DEL,
-        KC_CAPS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,               KC_ENT,           KC_POS,
-        KC_LSFT,          KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,               KC_RSFT, KC_UP,
+        KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,    KC_EQL,    KC_BSPC,          KC_KNOB,
+        KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC,    KC_RBRC,   KC_BSLS,          KC_DEL,
+        KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,               KC_ENT,           KC_POS,
+        KC_SHCL,          KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,               KC_RSFT, KC_UP,
         KC_LCTL, KC_LWIN, KC_LALT,                            KC_SPC,                             KC_RALT, MO(KB_SYS), TT(FN2),   KC_LEFT, KC_DOWN, KC_RGHT),
 
     [KB_SYS] = LAYOUT_ansi_67(
@@ -59,7 +62,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 #if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
-    [BASE] = { ENCODER_CCW_CW(LCTL(LSFT(KC_TAB)), LCTL(KC_TAB)) },
+    [BASE] = { ENCODER_CCW_CW(LCTL(KC_PGUP), LCTL(KC_PGDN)) },
     [KB_SYS]     = { ENCODER_CCW_CW(RGB_VAD, RGB_VAI) },
     [FN2]     = { ENCODER_CCW_CW(_______, _______) },
 };
@@ -71,6 +74,8 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
 // Define per-key tapping terms
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+        case KC_SHCL:
+            return 100;
         case KC_POS:
             return 150;
         case KC_KNOB:
@@ -85,9 +90,9 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case KC_POS:
-            return define_tap_hold(record, KC_HOME, KC_END);
+            return process_tap_hold(record, KC_HOME, KC_END);
         case KC_KNOB:
-            return define_tap_hold(record, KC_VBMIN, QK_BOOT);
+            return process_tap_hold(record, KC_VBMIN, QK_BOOT);
         default:
             // Just let QMK handle the event normally
             return true;
