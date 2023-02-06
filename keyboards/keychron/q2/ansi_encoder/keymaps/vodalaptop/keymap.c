@@ -34,24 +34,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_SHCL,          KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,               KC_RSFT, KC_UP,
         KC_LCTL, KC_LWIN, KC_LALT,                            KC_SPC,                             KC_RALT, TT(KB_SYS), TT(FN2),   KC_LEFT, KC_DOWN, KC_RGHT),
 
+    [INTL] = LAYOUT_ansi_67(
+        KC_IBT,  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______,   _______,          _______,
+        _______, _______, _______, _______, _______, _______, _______, KC_UE,   _______, KC_OE,   _______, _______,  _______,   _______,          _______,
+        _______, KC_AE,   KC_SS,   _______, _______, _______, _______, _______, _______, _______, _______, KC_IQT,              _______,          _______,
+        _______,          _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,             _______, _______,
+        _______, _______, _______,                            _______,                            _______, _______,  _______,   _______, _______, _______),
+
     [KB_SYS] = LAYOUT_ansi_67(
         _______, _______, _______, _______, _______, _______, _______, KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE, KC_VOLD,  KC_VOLU,   _______,          QK_BOOT,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______,   _______,          _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,             _______,          _______,
         _______,          _______, _______, _______, _______, _______, NK_TOGG, _______, _______, _______, _______,             _______, _______,
-        _______, _______, _______,                            _______,                            _______, _______,  _______,   _______, _______, _______),
+        _______, TG(INTL),_______,                            _______,                            _______, _______,  _______,   _______, _______, _______),
 
     [FN2] = LAYOUT_ansi_67(
         KC_TILD, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,   KC_F12,    _______,          _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______,   _______,          _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,             _______,          _______,
         _______,          _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,             _______, KC_PGUP,
-        _______, _______, _______,                            _______,                            KC_RCTL, _______,  _______,   KC_HOME, KC_PGDN, KC_END)
+        _______, _______, _______,                            _______,                            KC_RCTL, _______,  _______,   KC_HOME, KC_PGDN, KC_END),
 };
 
 #if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
     [BASE]   = { ENCODER_CCW_CW(LCTL(KC_PGUP), LCTL(KC_PGDN)) },
+    [INTL]   = { ENCODER_CCW_CW(LCTL(KC_PGUP), LCTL(KC_PGDN)) },
     [KB_SYS] = { ENCODER_CCW_CW(RGB_VAD, RGB_VAI) },
     [FN2]    = { ENCODER_CCW_CW(_______, _______) },
 };
@@ -78,6 +86,24 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 // Define per-key special handling
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+        case KC_AE:
+            return process_hold_sendstring(record, "\"a");
+        case KC_OE:
+            return process_hold_sendstring(record, "\"o");
+        case KC_UE:
+            return process_hold_sendstring(record, "\"u");
+        case KC_SS:
+            return process_hold(record, RALT(KC_S));
+        case KC_IQT:
+            if (record->event.pressed) {
+                send_string("\" ");
+            }
+            return false;
+        case KC_IBT:
+            if (record->event.pressed) {
+                send_string("` ");
+            }
+            return false;
         case KC_POS:
             return process_tap_hold(record, KC_HOME, KC_END);
         case KC_KNOB:
