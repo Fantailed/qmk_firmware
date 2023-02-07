@@ -96,7 +96,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return process_hold(record, RALT(KC_S));
         case KC_IQT:
             if (record->event.pressed) {
-                send_string("\" ");
+                send_string("\' ");
             }
             return false;
         case KC_IBT:

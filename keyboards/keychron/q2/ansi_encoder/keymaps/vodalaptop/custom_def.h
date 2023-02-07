@@ -15,6 +15,7 @@ enum custom_kc {
     KC_SS    = LT(0, KC_S),
     KC_IQT   = LT(0, KC_QUOT),  // Un-deadkey quote on intl layout
     KC_IBT   = LT(0, KC_GRV),   // Un-deadkey backtick/grave on intl layout
+    KC_ICX   = LT(0, KC_6),     // Un-deadkey ^ on intl layout
     KC_POS   = LT(0, KC_0),
     KC_KNOB  = LT(0, KC_1),
     // Aliases for normal keycodes
