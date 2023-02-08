@@ -17,11 +17,11 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
             case INTL:
                 rgb_matrix_set_color_all(RGB_ORANGE);
                 break;
+            case FUN:
+                rgb_matrix_set_color_all(CSL_LAVENDER);
+                break;
             case KB_SYS:
                 set_kb_sys_colors();
-                break;
-            case FN2:
-                rgb_matrix_set_color_all(CSL_LAVENDER);
                 break;
             default:
                 break;

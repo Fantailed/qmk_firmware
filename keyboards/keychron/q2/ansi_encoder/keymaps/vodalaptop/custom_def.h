@@ -3,12 +3,12 @@
 enum layers {
     BASE,
     INTL,
+    FUN,
     KB_SYS,
-    FN2,
 };
 
 enum custom_kc {
-    // LT(0, ...) keycodes are dummies used for special handling further down
+    // LT(0, ...) keycodes are dummies used for dual function (tap/hold) keys
     KC_AE    = LT(0, KC_A),
     KC_OE    = LT(0, KC_O),
     KC_UE    = LT(0, KC_U),
