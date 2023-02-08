@@ -25,3 +25,6 @@ enum custom_kc {
     KC_SM0,     // Secret Macro 0
     KC_CHL,     // hl-combo
 };
+
+#define RGB_PEACH        0xFF, 0xAF, 0x46
+#define RGB_LAVENDER     0xBA, 0x82, 0xFF
