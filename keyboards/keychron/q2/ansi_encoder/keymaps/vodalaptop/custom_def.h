@@ -2,9 +2,9 @@
 
 enum layers {
     BASE,
-    INTL,
-    FUN,
-    KB_SYS,
+    _INTL,
+    _FUN,
+    _SYS,
 };
 
 #define DUMMY(KC) LT(0, (KC))

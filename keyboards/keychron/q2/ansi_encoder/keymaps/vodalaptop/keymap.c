@@ -32,36 +32,36 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC,    KC_RBRC,   KC_BSLS,          KC_DEL,
         KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,               KC_ENT,           KC_POS,
         KC_SHCL,          KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,               KC_RSFT, KC_UP,
-        KC_LCTL, KC_LWIN, KC_LALT,                            KC_SPC,                             KC_MYAK, TT(FUN), TT(KB_SYS),   KC_LEFT, KC_DOWN, KC_RGHT),
+        KC_LCTL, KC_LWIN, KC_LALT,                            KC_SPC,                             KC_MYAK, TT(_FUN), TT(_SYS),   KC_LEFT, KC_DOWN, KC_RGHT),
 
-    [INTL] = LAYOUT_ansi_67(
+    [_INTL] = LAYOUT_ansi_67(
         KC_IBT,  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______,   _______,          _______,
         _______, _______, _______, _______, _______, _______, _______, KC_UE,   _______, KC_OE,   _______, _______,  _______,   _______,          _______,
         _______, KC_AE,   KC_SS,   _______, _______, _______, _______, _______, _______, _______, _______, KC_IQT,              _______,          _______,
         _______,          _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,             _______, _______,
         _______, _______, _______,                            _______,                            _______, _______,  _______,   _______, _______, _______),
 
-    [FUN] = LAYOUT_ansi_67(
+    [_FUN] = LAYOUT_ansi_67(
         KC_TILD, KC_F1,   KC_F2  ,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9, KC_F10 , KC_F11 ,   KC_F12,   _______,          KC_KNOB,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______,   _______,          _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,             _______,          _______,
         _______,          _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,             _______, KC_PGUP,
         _______, _______, _______,                            _______,                            KC_RCTL, _______,  _______,   KC_HOME, KC_PGDN, KC_END),
 
-    [KB_SYS] = LAYOUT_ansi_67(
+    [_SYS] = LAYOUT_ansi_67(
         _______, DM_PLY1, DM_PLY2, DM_REC1, DM_REC2, _______, _______, KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE, KC_VOLD,  KC_VOLU,   _______,          QK_BOOT,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______,   _______,          _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,             _______,          _______,
         _______,          _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,             _______, _______,
-        _______, TG(INTL),_______,                            _______,                            _______, _______,  _______,   _______, _______, _______),
+        _______, TG(_INTL),_______,                            _______,                            _______, _______,  _______,   _______, _______, _______),
 };
 
 #if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
     [BASE]   = { ENCODER_CCW_CW(LCTL(KC_PGUP), LCTL(KC_PGDN)) },
-    [INTL]   = { ENCODER_CCW_CW(LCTL(KC_PGUP), LCTL(KC_PGDN)) },
-    [FUN]    = { ENCODER_CCW_CW(LSFT(KC_TAB), KC_TAB) },
-    [KB_SYS] = { ENCODER_CCW_CW(LCTL(KC_PMNS), LCTL(KC_PPLS)) },
+    [_INTL]   = { ENCODER_CCW_CW(LCTL(KC_PGUP), LCTL(KC_PGDN)) },
+    [_FUN]    = { ENCODER_CCW_CW(LSFT(KC_TAB), KC_TAB) },
+    [_SYS] = { ENCODER_CCW_CW(LCTL(KC_PMNS), LCTL(KC_PPLS)) },
 };
 #endif
 
@@ -136,7 +136,7 @@ bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode
     // Scope combos to layers
     switch (combo_index) {
         case DELPOS_SM0:
-            return layer_state_is(KB_SYS);
+            return layer_state_is(_SYS);
         case HL_EXPAND:
         case JK_SHRINK:
         case HJ_BEGIN:
