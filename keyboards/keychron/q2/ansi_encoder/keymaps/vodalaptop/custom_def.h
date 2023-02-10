@@ -33,6 +33,7 @@ enum custom_kc {
 
 // Perceived colors after Akko CS Lavender Purple switches' purple skew
 #define CSL_WHITE        255, 255,  35
+#define CSL_PINK         255, 100,  50
 #define CSL_CORAL        255, 240,  50
 #define CSL_PEACH        255, 230,  20
 #define CSL_SPRINGGREEN  120, 255,   0

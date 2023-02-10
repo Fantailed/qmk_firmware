@@ -6,6 +6,9 @@
 
 #define COMBO_SHOULD_TRIGGER
 
+#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
+#define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
+
 // Disable unneeded RGB animations (saves memory)
 #undef ENABLE_RGB_MATRIX_BREATHING
 #undef ENABLE_RGB_MATRIX_BAND_SPIRAL_VAL

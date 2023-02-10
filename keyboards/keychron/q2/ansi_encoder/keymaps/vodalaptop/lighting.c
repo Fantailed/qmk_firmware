@@ -2,12 +2,18 @@
 #include "custom_def.h"
 #include "lighting.h"
 
+static bool caps_word = false;
+
+void caps_word_set_user(bool active) {
+    caps_word = active;
+}
+
 bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
-    // Red caps lock light overrides all layer indicators
+    // Caps Lock/Word indicators override all layer indicators
     if (host_keyboard_led_state().caps_lock) {
-        for (uint8_t i = led_min; i < led_max; i++) {
-            rgb_matrix_set_color(i, RGB_RED);
-        }
+        rgb_matrix_set_color_all(RGB_RED);
+    } else if (caps_word) {
+        rgb_matrix_set_color_all(CSL_PINK);
     } else {
         // Layer indicators
         switch(get_highest_layer(layer_state|default_layer_state)) {
