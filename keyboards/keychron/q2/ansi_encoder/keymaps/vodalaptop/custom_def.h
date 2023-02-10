@@ -24,8 +24,6 @@ enum custom_kc {
     KC_IQT   = DUMMY(KC_QUOT),  // Un-deadkey quote on intl layout
     KC_IBT   = DUMMY(KC_GRV),   // Un-deadkey backtick/grave on intl layout
     KC_ICX   = DUMMY(KC_6),     // Un-deadkey ^ on intl layout
-    KC_DM1   = DUMMY(DM_PLY1),     // dynamic macro hold to record
-    KC_DM2   = DUMMY(DM_PLY2),
     KC_POS   = DUMMY(KC_0),
     KC_KNOB  = DUMMY(KC_1),
     // Placeholders
