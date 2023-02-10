@@ -23,6 +23,9 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
             case _INTL:
                 rgb_matrix_set_color_all(RGB_ORANGE);
                 break;
+            case _NAV:
+                rgb_matrix_set_color_all(CSL_TEAL);
+                break;
             case _FUN:
                 rgb_matrix_set_color_all(CSL_LAVENDER);
                 break;

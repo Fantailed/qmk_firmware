@@ -3,6 +3,7 @@
 enum layers {
     BASE,
     _INTL,
+    _NAV,
     _FUN,
     _SYS,
 };
