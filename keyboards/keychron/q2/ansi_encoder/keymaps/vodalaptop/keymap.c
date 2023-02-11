@@ -35,7 +35,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LCTL, KC_LWIN, KC_LALT,                            LT(_NAV, KC_SPC),                   KC_MYAK, TT(_FUN), TT(_SYS),  KC_LEFT, KC_DOWN, KC_RGHT),
 
     [_INTL] = LAYOUT_ansi_67(
-        KC_IBT,  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______,   _______,          _______,
+        KC_IBT,  _______, _______, _______, _______, _______, KC_ICX , _______, _______, _______, _______, _______,  _______,   _______,          _______,
         _______, _______, _______, _______, _______, _______, _______, KC_UE,   _______, KC_OE,   _______, _______,  _______,   _______,          _______,
         _______, KC_AE,   KC_SS,   _______, _______, _______, _______, _______, _______, _______, _______, KC_IQT,              _______,          _______,
         _______,          _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,             _______, _______,
@@ -100,8 +100,9 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 
 // Define per-key special handling
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    static bool isShifted;
     if (record->event.pressed) {
-        bool isShifted = get_mods() & MOD_MASK_SHIFT;
+        isShifted = get_mods() & MOD_MASK_SHIFT;
 
         switch (keycode) {
             case KC_AE:
@@ -118,7 +119,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return process_tap_sendstring(record, "` ");
             case KC_ICX:
                 if (isShifted) {
-                    return process_tap_sendstring(record, "Yo what");
+                    return process_tap_sendstring(record, "^ ");
                 } else {
                     return process_tap(record, KC_6);
                 }
