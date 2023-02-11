@@ -100,37 +100,46 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 
 // Define per-key special handling
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    // bool shifted = keyboard_report->mods & MOD_BIT(KC_LSFT) || keyboard_report->mods & MOD_BIT(KC_RSFT);
+    if (record->event.pressed) {
+        bool isShifted = get_mods() & MOD_MASK_SHIFT;
 
-    switch (keycode) {
-        case KC_AE:
-            return process_hold(record, RALT(KC_A));
-        case KC_OE:
-            return process_hold(record, RALT(KC_O));
-        case KC_UE:
-            return process_hold(record, RALT(KC_U));
-        case KC_SS:
-            return process_hold(record, RALT(KC_S));
-        case KC_IQT:
-            return process_tap_sendstring(record, "' ");
-        case KC_IBT:
-            return process_tap_sendstring(record, "` ");
-        case KC_POS:
-            return process_tap_hold(record, KC_HOME, KC_END);
-        case KC_KNOB:
-            return process_tap_hold(record, KC_VBMIN, QK_BOOT);
+        switch (keycode) {
+            case KC_AE:
+                return process_hold(record, RALT(KC_A));
+            case KC_OE:
+                return process_hold(record, RALT(KC_O));
+            case KC_UE:
+                return process_hold(record, RALT(KC_U));
+            case KC_SS:
+                return process_hold(record, RALT(KC_S));
+            case KC_IQT:
+                return process_tap_sendstring(record, "' ");
+            case KC_IBT:
+                return process_tap_sendstring(record, "` ");
+            case KC_ICX:
+                if (isShifted) {
+                    return process_tap_sendstring(record, "Yo what");
+                } else {
+                    return process_tap(record, KC_6);
+                }
+            case KC_POS:
+                return process_tap_hold(record, KC_HOME, KC_END);
+            case KC_KNOB:
+                return process_tap_hold(record, KC_VBMIN, QK_BOOT);
 #ifdef SECRET_MACRO_0
-        case KC_SM0:
-            if (record->event.pressed) {
-                SECRET_MACRO_0;
-                return false;
-            }
-            return true;
+            case KC_SM0:
+                if (record->event.pressed) {
+                    SECRET_MACRO_0;
+                    return false;
+                }
+                return true;
 #endif
-        default:
-            // Just let QMK handle the event normally
-            return true;
+            default:
+                // Just let QMK handle the event normally
+                return true;
+        }
     }
+
     return true;
 }
 
