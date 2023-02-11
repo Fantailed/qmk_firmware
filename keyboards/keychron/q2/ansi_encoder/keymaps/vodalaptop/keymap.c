@@ -100,25 +100,21 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 
 // Define per-key special handling
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    // bool shifted = keyboard_report->mods & MOD_BIT(KC_LSFT) || keyboard_report->mods & MOD_BIT(KC_RSFT);
+
     switch (keycode) {
         case KC_AE:
-            return process_hold_sendstring(record, "\"a");
+            return process_hold(record, RALT(KC_A));
         case KC_OE:
-            return process_hold_sendstring(record, "\"o");
+            return process_hold(record, RALT(KC_O));
         case KC_UE:
-            return process_hold_sendstring(record, "\"u");
+            return process_hold(record, RALT(KC_U));
         case KC_SS:
             return process_hold(record, RALT(KC_S));
         case KC_IQT:
-            if (record->event.pressed) {
-                send_string("\' ");
-            }
-            return false;
+            return process_tap_sendstring(record, "' ");
         case KC_IBT:
-            if (record->event.pressed) {
-                send_string("` ");
-            }
-            return false;
+            return process_tap_sendstring(record, "` ");
         case KC_POS:
             return process_tap_hold(record, KC_HOME, KC_END);
         case KC_KNOB:

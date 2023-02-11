@@ -22,14 +22,15 @@ enum custom_kc {
     KC_OE    = DUMMY(KC_O),
     KC_UE    = DUMMY(KC_U),
     KC_SS    = DUMMY(KC_S),
-    KC_IQT   = DUMMY(KC_QUOT),  // Un-deadkey quote on intl layout
-    KC_IBT   = DUMMY(KC_GRV),   // Un-deadkey backtick/grave on intl layout
-    KC_ICX   = DUMMY(KC_6),     // Un-deadkey ^ on intl layout
     KC_POS   = DUMMY(KC_0),
     KC_KNOB  = DUMMY(KC_1),
     // Placeholders
     KC_SM0,     // Secret Macro 0
     KC_CHL,     // hl-combo
+    // US-Intl. Un-dead-keying
+    KC_IQT,     // '
+    KC_IBT,     // `
+    KC_ICX,     // ^
 };
 
 // Perceived colors after Akko CS Lavender Purple switches' purple skew

@@ -13,6 +13,13 @@ bool process_tap_hold(keyrecord_t *record, uint16_t tap_key, uint16_t hold_key) 
     return false;
 }
 
+bool process_tap_sendstring(keyrecord_t *record, const char *tap_keys) {
+    if (record->event.pressed) {
+        send_string(tap_keys);
+    }
+    return false;
+}
+
 bool process_hold(keyrecord_t *record, uint16_t hold_key) {
     // When held
     if (record->event.pressed && record->tap.count == 0) {
