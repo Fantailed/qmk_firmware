@@ -22,8 +22,6 @@
 #include "lighting.h"
 #include "secret_macros.h"
 
-#define KC_TASK LGUI(KC_TAB)
-#define KC_FLXP LGUI(KC_E)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -66,9 +64,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
     [BASE]   = { ENCODER_CCW_CW(LCTL(KC_PGUP), LCTL(KC_PGDN)) },
-    [_INTL]   = { ENCODER_CCW_CW(LCTL(KC_PGUP), LCTL(KC_PGDN)) },
-    [_FUN]    = { ENCODER_CCW_CW(LSFT(KC_TAB), KC_TAB) },
-    [_SYS] = { ENCODER_CCW_CW(LCTL(KC_PMNS), LCTL(KC_PPLS)) },
+    [_INTL]  = { ENCODER_CCW_CW(LCTL(KC_PGUP), LCTL(KC_PGDN)) },
+    [_FUN]   = { ENCODER_CCW_CW(LSFT(KC_TAB), KC_TAB) },
+    [_SYS]   = { ENCODER_CCW_CW(LCTL(KC_PMNS), LCTL(KC_PPLS)) },
 };
 #endif
 
