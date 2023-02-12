@@ -12,9 +12,10 @@ enum layers {
 
 enum custom_kc {
     // Aliases for normal keycodes
-    KC_SHCL  = MT(MOD_LSFT, KC_CAPS),  // Shift/Caps-Lock
-    KC_VBMIN = RCTL(KC_F),
-    KC_MYAK  = MEH(KC_F12),           // Yakuake inside vbox
+    KC_SHCL  = MT(MOD_LSFT, KC_CAPS),   // Shift/Caps-Lock
+    KC_SPNV  = LT(_NAV, KC_SPC),        // Hold space for toggle nav layer
+    KC_VBMIN = RCTL(KC_F),              // Toggle Fullscreen in vbox
+    KC_MYAK  = MEH(KC_F12),             // Yakuake with meh
     // LT(0, ...) keycodes are dummies used for dual function (tap/hold) keys
     // Keycode defined inside dummy is tap action if desired
     // or arbitrary unique keycode if tap should also be handled specially.
