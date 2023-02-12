@@ -36,8 +36,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_INTL] = LAYOUT_ansi_67(
         KC_IBT,  _______, _______, _______, _______, _______, KC_ICX , _______, _______, _______, _______, _______,  _______,   _______,          _______,
-        _______, _______, _______, _______, _______, _______, _______, KC_UE,   _______, KC_OE,   _______, _______,  _______,   _______,          _______,
-        _______, KC_AE,   KC_SS,   _______, _______, _______, _______, _______, _______, _______, _______, KC_IQT,              _______,          _______,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______,   _______,          _______,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_IQT ,             _______,          _______,
         _______,          _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,             _______, _______,
         _______, _______, _______,                            _______,                            _______, _______,  _______,   _______, _______, _______),
 
@@ -78,14 +78,6 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
 // Define per-key tapping terms
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case KC_AE:
-            return 190;
-        case KC_OE:
-            return 180;
-        case KC_UE:
-            return 160;
-        case KC_SS:
-            return 190;
         case KC_SHCL:
             return 120;
         case KC_POS:
@@ -105,14 +97,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         isShifted = get_mods() & MOD_MASK_SHIFT;
 
         switch (keycode) {
-            case KC_AE:
-                return process_hold(record, RALT(KC_A));
-            case KC_OE:
-                return process_hold(record, RALT(KC_O));
-            case KC_UE:
-                return process_hold(record, RALT(KC_U));
-            case KC_SS:
-                return process_hold(record, RALT(KC_S));
+            // Un-dead-key in intl. layout
             case KC_IQT:
                 return process_tap_sendstring(record, "' ");
             case KC_IBT:
@@ -123,6 +108,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 } else {
                     return process_tap(record, KC_6);
                 }
+            // Simple tap/hold assignments
             case KC_POS:
                 return process_tap_hold(record, KC_HOME, KC_END);
             case KC_KNOB:
@@ -146,6 +132,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 // Combo keys
 bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
+    // Use this instead of layer_state_is if all layers are inactive and you need to catch the default layer
+    uint8_t curr_layer = get_highest_layer(layer_state|default_layer_state);
+
     // Scope combos to layers
     switch (combo_index) {
         case DELPOS_SM0:
@@ -154,7 +143,13 @@ bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode
         case JK_SHRINK:
         case HJ_BEGIN:
         case KL_END:
-            return layer_state_is(BASE);
+            return layer_state_is(BASE) || layer_state_is(_INTL);
+        case AE_GU:
+        case OE_GU:
+        case UE_GU:
+        case SE_GU:
+        case EUR_EURO:
+            return curr_layer == _INTL;
         default:
             return true;
     }

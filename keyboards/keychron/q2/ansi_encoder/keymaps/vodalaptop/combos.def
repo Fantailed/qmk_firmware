@@ -1,7 +1,21 @@
-//  name            result                  chord keys
-COMB(HL_EXPAND,     LSFT(LALT(KC_RIGHT)),                 KC_H, KC_L)
+// For basic combos, adding them here should be enough.
+// Though beware that per default, combos are not layer-scoped,
+// so you may want to set up your own layer scoping in keymap.c
+
+//  name         |  result               |  chord keys
+
+// VSCode Line Selections
+COMB(HL_EXPAND,     LSFT(LALT(KC_RIGHT)),   KC_H, KC_L)
 COMB(HJ_BEGIN,      LSFT(KC_HOME),          KC_H, KC_J)
-COMB(JK_SHRINK,     LSFT(LALT(KC_LEFT)),   KC_J, KC_K)
+COMB(JK_SHRINK,     LSFT(LALT(KC_LEFT)),    KC_J, KC_K)
 COMB(KL_END,        LSFT(KC_END),           KC_K, KC_L)
+
+// (G)erman (U)mlauts etc.
+COMB(AE_GU,         RALT(KC_A),             KC_A, KC_E)
+COMB(OE_GU,         RALT(KC_O),             KC_O, KC_E)
+COMB(UE_GU,         RALT(KC_U),             KC_U, KC_E)
+COMB(SE_GU,         RALT(KC_S),             KC_S, KC_E)
+COMB(EUR_EURO,      RALT(KC_5),             KC_E, KC_U, KC_R)
+
 // Secret Macro
 COMB(DELPOS_SM0,    KC_SM0,                 KC_DEL, KC_POS)

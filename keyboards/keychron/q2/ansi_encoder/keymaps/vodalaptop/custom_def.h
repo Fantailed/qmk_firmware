@@ -18,10 +18,6 @@ enum custom_kc {
     // LT(0, ...) keycodes are dummies used for dual function (tap/hold) keys
     // Keycode defined inside dummy is tap action if desired
     // or arbitrary unique keycode if tap should also be handled specially.
-    KC_AE    = DUMMY(KC_A),
-    KC_OE    = DUMMY(KC_O),
-    KC_UE    = DUMMY(KC_U),
-    KC_SS    = DUMMY(KC_S),
     KC_POS   = DUMMY(KC_0),
     KC_KNOB  = DUMMY(KC_1),
     // Placeholders
