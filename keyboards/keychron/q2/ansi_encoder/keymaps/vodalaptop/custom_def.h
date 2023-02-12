@@ -15,15 +15,16 @@ enum layers {
 
 enum custom_keycodes {
     // === Aliases for normal keycodes ===
-    CK_SHCL  = MT(MOD_LSFT, KC_CAPS),   // Shift/Caps-Lock
-    CK_SPNV  = LT(_NAV, KC_SPC),        // Hold space for toggle nav layer
-    CK_TTF   = TT(_FUN),                // Tap-toggle function layer
-    CK_TTS   = TT(_SYS),                // Tap-toggle sys layer
-    CK_TGI   = TG(_INTL),               // Toggle intl layer
-    CK_VBFC  = RCTL(KC_F),              // Toggle Fullscreen in vbox
-    CK_MYAK  = MEH(KC_F12),             // Yakuake with meh
-    CK_OSRA  = OSM(MOD_RALT),           // One-shot right alt
-    CK_OSRC  = OSM(MOD_RCTL),           // One-shot right ctrl
+    CK_SHCL  = LSFT_T(KC_CAPS),     // Shift/Caps-Lock
+    CK_SHSL  = RSFT_T(KC_SLSH),     // Mod-tap Slash/RShift
+    CK_SPNV  = LT(_NAV, KC_SPC),    // Hold space for toggle nav layer
+    CK_TTF   = TT(_FUN),            // Tap-toggle function layer
+    CK_TTS   = TT(_SYS),            // Tap-toggle sys layer
+    CK_TGI   = TG(_INTL),           // Toggle intl layer
+    CK_VBFC  = RCTL(KC_F),          // Toggle Fullscreen in vbox
+    CK_MYAK  = MEH(KC_F12),         // Yakuake with meh
+    CK_OSRA  = OSM(MOD_RALT),       // One-shot right alt
+    CK_OSRC  = OSM(MOD_RCTL),       // One-shot right ctrl
     // === Hold/tap dual-function dummies ===
     CK_POS   = DUMMY(KC_0),
     CK_KNOB  = DUMMY(KC_1),
