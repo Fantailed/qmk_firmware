@@ -142,19 +142,21 @@ bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode
 
     // Scope combos to layers
     switch (combo_index) {
-        case DELPOS_SM0:
-            return layer_state_is(_SYS);
         case HL_EXPAND:
         case JK_SHRINK:
         case HJ_BEGIN:
         case KL_END:
             return layer_state_is(BASE) || layer_state_is(_INTL);
+        case DELPOS_SM0:
+            return layer_state_is(_SYS);
         case AE_GU:
         case OE_GU:
         case UE_GU:
         case SE_GU:
         case EUR_EURO:
             return curr_layer == _INTL;
+        case WR_MSMID:
+            return layer_state_is(_NAV);
         default:
             return true;
     }
