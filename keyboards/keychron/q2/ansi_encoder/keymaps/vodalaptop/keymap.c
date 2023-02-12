@@ -101,16 +101,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         isShifted = get_mods() & MOD_MASK_SHIFT;
 
         switch (keycode) {
-            // Un-dead-key in intl. layout
+            // Un-dead-key in intl. layout + auto-shift
             case CK_IQT:
-                return process_tap_sendstring(record, "' ");
+                return process_tap_hold_sendstring(record, "' ", "\" ");
             case CK_IBT:
-                return process_tap_sendstring(record, "` ");
+                return process_tap_hold_sendstring(record, "` ", "~ ");
             case CK_ICX:
                 if (isShifted) {
                     return process_tap_sendstring(record, "^ ");
                 } else {
-                    return process_tap(record, KC_6);
+                    // Auto-shift does not get detected by isShifted
+                    return process_tap_hold_sendstring(record, "6", "^ ");
                 }
             // Simple tap/hold assignments
             case CK_POS:
