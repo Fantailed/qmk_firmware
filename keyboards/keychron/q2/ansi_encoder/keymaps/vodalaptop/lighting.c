@@ -13,21 +13,21 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     if (host_keyboard_led_state().caps_lock) {
         rgb_matrix_set_color_all(RGB_RED);
     } else if (caps_word) {
-        rgb_matrix_set_color_all(CSL_PINK);
+        rgb_matrix_set_color_all(CRGB_PINK);
     } else {
         // Layer indicators
         switch(get_highest_layer(layer_state|default_layer_state)) {
             case BASE:
-                rgb_matrix_set_color_all(CSL_GOLD);
+                rgb_matrix_set_color_all(CRGB_GOLD);
                 break;
             case _INTL:
-                rgb_matrix_set_color_all(CSL_PEACH);
+                rgb_matrix_set_color_all(CRGB_PEACH);
                 break;
             case _NAV:
-                rgb_matrix_set_color_all(CSL_TEAL);
+                rgb_matrix_set_color_all(CRGB_TEAL);
                 break;
             case _FUN:
-                rgb_matrix_set_color_all(CSL_LAVENDER);
+                rgb_matrix_set_color_all(CRGB_LAVENDER);
                 break;
             case _SYS:
                 set_kb_sys_colors();
@@ -42,27 +42,27 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
 // Highlights different functional zones by color
 void set_kb_sys_colors() {
     // Default white
-    rgb_matrix_set_color_all(CSL_WHITE);
+    rgb_matrix_set_color_all(CRGB_WHITE);
 
     // Macros
-    rgb_matrix_set_color(1, CSL_SPRINGGREEN);
-    rgb_matrix_set_color(2, CSL_SPRINGGREEN);
-    rgb_matrix_set_color(3, CSL_SPRINGGREEN);
-    rgb_matrix_set_color(4, CSL_SPRINGGREEN);
-    rgb_matrix_set_color(5, CSL_SPRINGGREEN);
-    rgb_matrix_set_color(6, CSL_SPRINGGREEN);
+    rgb_matrix_set_color(1, CRGB_SPRINGGREEN);
+    rgb_matrix_set_color(2, CRGB_SPRINGGREEN);
+    rgb_matrix_set_color(3, CRGB_SPRINGGREEN);
+    rgb_matrix_set_color(4, CRGB_SPRINGGREEN);
+    rgb_matrix_set_color(5, CRGB_SPRINGGREEN);
+    rgb_matrix_set_color(6, CRGB_SPRINGGREEN);
 
     // prev/playpause/next
-    rgb_matrix_set_color(7, CSL_CORAL);
-    rgb_matrix_set_color(8, CSL_CORAL);
-    rgb_matrix_set_color(9, CSL_CORAL);
+    rgb_matrix_set_color(7, CRGB_CORAL);
+    rgb_matrix_set_color(8, CRGB_CORAL);
+    rgb_matrix_set_color(9, CRGB_CORAL);
 
     // mute
-    rgb_matrix_set_color(10, CSL_BLUE);
+    rgb_matrix_set_color(10, CRGB_BLUE);
     // vol up/down
-    rgb_matrix_set_color(11, CSL_TEAL);
-    rgb_matrix_set_color(12, CSL_TEAL);
+    rgb_matrix_set_color(11, CRGB_TEAL);
+    rgb_matrix_set_color(12, CRGB_TEAL);
 
     // left meta
-    rgb_matrix_set_color(58, CSL_PEACH);
+    rgb_matrix_set_color(58, CRGB_PEACH);
 }

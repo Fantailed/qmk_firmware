@@ -35,13 +35,15 @@ enum custom_keycodes {
     CK_ICX,     // ^
 };
 
-// Perceived colors after Akko CS Lavender Purple switches' purple skew
-#define CSL_WHITE        200, 255,  35
-#define CSL_CORAL        255, 240,  50
-#define CSL_PEACH        255, 220,  20
-#define CSL_GOLD         230, 200,  10
-#define CSL_SPRINGGREEN  120, 255,   0
-#define CSL_TEAL          50, 255, 100
-#define CSL_BLUE           0,  70, 240
-#define CSL_LAVENDER     200, 200, 200
-#define CSL_PINK         255, 100,  50
+
+// === Custom RGB ===
+// Colors corrected for Akko CS Lavender Purple switches' purple tint
+#define CRGB_WHITE        200, 255,  35
+#define CRGB_CORAL        255, 240,  50
+#define CRGB_PEACH        255, 220,  20
+#define CRGB_GOLD         230, 200,  10
+#define CRGB_SPRINGGREEN  120, 255,   0
+#define CRGB_TEAL          50, 255, 100
+#define CRGB_BLUE           0,  70, 240
+#define CRGB_LAVENDER     200, 200, 200
+#define CRGB_PINK         255, 100,  50
