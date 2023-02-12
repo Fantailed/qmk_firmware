@@ -28,16 +28,16 @@
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [BASE] = LAYOUT_ansi_67(
-        KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,    KC_EQL,  KC_BSPC,          KC_KNOB,
+        KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,    KC_EQL,  KC_BSPC,          CK_KNOB,
         KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC,   KC_RBRC,  KC_BSLS,          KC_DEL,
-        KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,             KC_ENT,           KC_POS,
-        KC_SHCL,          KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,             KC_RSFT, KC_UP,
-        KC_LCTL, KC_LWIN, KC_LALT,                            KC_SPNV,                            KC_MYAK, TT(_FUN), TT(_SYS),  KC_LEFT, KC_DOWN, KC_RGHT),
+        KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,             KC_ENT,           CK_POS,
+        CK_SHCL,          KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,             KC_RSFT, KC_UP,
+        KC_LCTL, KC_LWIN, KC_LALT,                            CK_SPNV,                            CK_MYAK, TT(_FUN), TT(_SYS),  KC_LEFT, KC_DOWN, KC_RGHT),
 
     [_INTL] = LAYOUT_ansi_67(
-        KC_IBT,  _______, _______, _______, _______, _______, KC_ICX , _______, _______, _______, _______, _______,  _______,   _______,          _______,
+        CK_IBT,  _______, _______, _______, _______, _______, CK_ICX , _______, _______, _______, _______, _______,  _______,   _______,          _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______,   _______,          _______,
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_IQT ,             _______,          _______,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, CK_IQT ,             _______,          _______,
         _______,          _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,             _______, _______,
         _______, _______, _______,                            _______,                            _______, _______,  _______,   _______, _______, _______),
 
@@ -49,11 +49,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______,                            _______,                            _______, _______,  _______,   _______, _______, _______),
 
     [_FUN] = LAYOUT_ansi_67(
-        KC_TILD, KC_F1,   KC_F2  ,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9, KC_F10 , KC_F11 ,   KC_F12,   _______,          KC_KNOB,
+        KC_TILD, KC_F1,   KC_F2  ,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9, KC_F10 , KC_F11 ,   KC_F12,   _______,          CK_KNOB,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______,   _______,          KC_PSCR,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,             _______,          KC_INS,
         _______,          _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,             _______, KC_PGUP,
-        _______, _______, _______,                            _______,                            OSM(MOD_RALT), _______, OSM(MOD_RCTL),   KC_HOME, KC_WH_D, KC_WH_U),
+        _______, _______, _______,                            _______,                            CK_OSRA, _______,  CK_OSRC,   KC_HOME, KC_WH_D, KC_WH_U),
 
     [_SYS] = LAYOUT_ansi_67(
         _______, DM_PLY1, DM_PLY2, DM_REC1, DM_REC2, _______, _______, KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE, KC_VOLD,  KC_VOLU,   _______,          QK_BOOT,
@@ -78,13 +78,13 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
 // Define per-key tapping terms
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case KC_SPNV:
+        case CK_SPNV:
             return 120;
-        case KC_SHCL:
+        case CK_SHCL:
             return 120;
-        case KC_POS:
+        case CK_POS:
             return 150;
-        case KC_KNOB:
+        case CK_KNOB:
             return 5000;
         default:
             return TAPPING_TERM;
@@ -100,23 +100,23 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
         switch (keycode) {
             // Un-dead-key in intl. layout
-            case KC_IQT:
+            case CK_IQT:
                 return process_tap_sendstring(record, "' ");
-            case KC_IBT:
+            case CK_IBT:
                 return process_tap_sendstring(record, "` ");
-            case KC_ICX:
+            case CK_ICX:
                 if (isShifted) {
                     return process_tap_sendstring(record, "^ ");
                 } else {
                     return process_tap(record, KC_6);
                 }
             // Simple tap/hold assignments
-            case KC_POS:
+            case CK_POS:
                 return process_tap_hold(record, KC_HOME, KC_END);
-            case KC_KNOB:
-                return process_tap_hold(record, KC_VBMIN, QK_BOOT);
+            case CK_KNOB:
+                return process_tap_hold(record, CK_VBFC, QK_BOOT);
 #ifdef SECRET_MACRO_0
-            case KC_SM0:
+            case CK_SM0:
                 if (record->event.pressed) {
                     SECRET_MACRO_0;
                     return false;

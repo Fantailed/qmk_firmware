@@ -18,4 +18,4 @@ COMB(SE_GU,         RALT(KC_S),             KC_S, KC_E)
 COMB(EUR_EURO,      RALT(KC_5),             KC_E, KC_U, KC_R)
 
 // Secret Macro
-COMB(DELPOS_SM0,    KC_SM0,                 KC_DEL, KC_POS)
+COMB(DELPOS_SM0,    CK_SM0,                 KC_DEL, CK_POS)

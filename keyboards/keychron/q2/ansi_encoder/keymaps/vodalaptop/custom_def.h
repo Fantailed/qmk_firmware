@@ -8,26 +8,28 @@ enum layers {
     _SYS,
 };
 
+// LT(0, ...) keycodes are dummies used for dual function (tap/hold) keys
+// Keycode defined inside dummy is tap action if desired
+// or arbitrary unique keycode if tap should also be handled specially.
 #define DUMMY(KC) LT(0, (KC))
 
-enum custom_kc {
-    // Aliases for normal keycodes
-    KC_SHCL  = MT(MOD_LSFT, KC_CAPS),   // Shift/Caps-Lock
-    KC_SPNV  = LT(_NAV, KC_SPC),        // Hold space for toggle nav layer
-    KC_VBMIN = RCTL(KC_F),              // Toggle Fullscreen in vbox
-    KC_MYAK  = MEH(KC_F12),             // Yakuake with meh
-    // LT(0, ...) keycodes are dummies used for dual function (tap/hold) keys
-    // Keycode defined inside dummy is tap action if desired
-    // or arbitrary unique keycode if tap should also be handled specially.
-    KC_POS   = DUMMY(KC_0),
-    KC_KNOB  = DUMMY(KC_1),
-    // Placeholders
-    KC_SM0,     // Secret Macro 0
-    KC_CHL,     // hl-combo
+enum custom_keycodes {
+    // === Aliases for normal keycodes ===
+    CK_SHCL  = MT(MOD_LSFT, KC_CAPS),   // Shift/Caps-Lock
+    CK_SPNV  = LT(_NAV, KC_SPC),        // Hold space for toggle nav layer
+    CK_VBFC  = RCTL(KC_F),              // Toggle Fullscreen in vbox
+    CK_MYAK  = MEH(KC_F12),             // Yakuake with meh
+    CK_OSRA  = OSM(MOD_RALT),           // One-shot right alt
+    CK_OSRC  = OSM(MOD_RCTL),           // One-shot right ctrl
+    // === Hold/tap dual-function dummies ===
+    CK_POS   = DUMMY(KC_0),
+    CK_KNOB  = DUMMY(KC_1),
+    // === Plain Placeholders ===
+    CK_SM0,     // Secret Macro 0
     // US-Intl. Un-dead-keying
-    KC_IQT,     // '
-    KC_IBT,     // `
-    KC_ICX,     // ^
+    CK_IQT,     // '
+    CK_IBT,     // `
+    CK_ICX,     // ^
 };
 
 // Perceived colors after Akko CS Lavender Purple switches' purple skew
