@@ -76,6 +76,10 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
 // Define per-key tapping terms
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+        case CK_TTF:
+        case CK_TTS:
+        case CK_TGI:
+            return 110;
         case CK_SPNV:
             return 110;
         case CK_SHCL:
