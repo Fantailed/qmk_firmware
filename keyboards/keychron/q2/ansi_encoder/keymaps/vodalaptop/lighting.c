@@ -47,10 +47,8 @@ void set_kb_sys_colors() {
     // Macros
     rgb_matrix_set_color(1, CRGB_SPRINGGREEN);
     rgb_matrix_set_color(2, CRGB_SPRINGGREEN);
-    rgb_matrix_set_color(3, CRGB_SPRINGGREEN);
-    rgb_matrix_set_color(4, CRGB_SPRINGGREEN);
-    rgb_matrix_set_color(5, CRGB_SPRINGGREEN);
-    rgb_matrix_set_color(6, CRGB_SPRINGGREEN);
+    rgb_matrix_set_color(3, CRGB_GREEN);
+    rgb_matrix_set_color(4, CRGB_GREEN);
 
     // prev/playpause/next
     rgb_matrix_set_color(7, CRGB_CORAL);

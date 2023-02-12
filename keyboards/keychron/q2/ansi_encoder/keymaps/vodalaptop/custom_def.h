@@ -44,6 +44,7 @@ enum custom_keycodes {
 #define CRGB_PEACH        255, 220,  20
 #define CRGB_GOLD         230, 200,  10
 #define CRGB_SPRINGGREEN  120, 255,   0
+#define CRGB_GREEN         75, 250,   0
 #define CRGB_TEAL          50, 255, 100
 #define CRGB_BLUE           0,  70, 240
 #define CRGB_LAVENDER     200, 200, 200
