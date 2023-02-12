@@ -18,10 +18,10 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
         // Layer indicators
         switch(get_highest_layer(layer_state|default_layer_state)) {
             case BASE:
-                rgb_matrix_set_color_all(CSL_PEACH);
+                rgb_matrix_set_color_all(CSL_GOLD);
                 break;
             case _INTL:
-                rgb_matrix_set_color_all(RGB_ORANGE);
+                rgb_matrix_set_color_all(CSL_PEACH);
                 break;
             case _NAV:
                 rgb_matrix_set_color_all(CSL_TEAL);
@@ -64,5 +64,5 @@ void set_kb_sys_colors() {
     rgb_matrix_set_color(12, CSL_TEAL);
 
     // left meta
-    rgb_matrix_set_color(58, RGB_ORANGE);
+    rgb_matrix_set_color(58, CSL_PEACH);
 }
