@@ -3,6 +3,7 @@
 enum layers {
     BASE,
     _INTL,
+    _GAME,
     _NAV,
     _FUN,
     _SYS,
@@ -21,6 +22,7 @@ enum custom_keycodes {
     CK_TTF   = TT(_FUN),            // Tap-toggle function layer
     CK_TTS   = TT(_SYS),            // Tap-toggle sys layer
     CK_TGI   = TG(_INTL),           // Toggle intl layer
+    CK_TGG   = TG(_GAME),           // Toggle gaming layer
     CK_VBFC  = RCTL(KC_F),          // Toggle Fullscreen in vbox
     CK_MYAK  = MEH(KC_F12),         // Yakuake with meh
     CK_OSRA  = OSM(MOD_RALT),       // One-shot right alt
@@ -40,6 +42,7 @@ enum custom_keycodes {
 // === Custom RGB ===
 // Colors corrected for Akko CS Lavender Purple switches' purple tint
 #define CRGB_WHITE        200, 255,  35
+#define CRGB_RED          255,  50,   0
 #define CRGB_CORAL        255, 240,  50
 #define CRGB_PEACH        255, 220,  20
 #define CRGB_GOLD         230, 200,  10

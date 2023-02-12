@@ -29,6 +29,9 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
             case _FUN:
                 rgb_matrix_set_color_all(CRGB_LAVENDER);
                 break;
+            case _GAME:
+                rgb_matrix_set_color_all(CRGB_RED);
+                break;
             case _SYS:
                 set_kb_sys_colors();
                 break;
@@ -60,6 +63,9 @@ void set_kb_sys_colors() {
     // vol up/down
     rgb_matrix_set_color(11, CRGB_TEAL);
     rgb_matrix_set_color(12, CRGB_TEAL);
+
+    // G for game layer
+    rgb_matrix_set_color(35, CRGB_RED);
 
     // left meta
     rgb_matrix_set_color(58, CRGB_PEACH);
