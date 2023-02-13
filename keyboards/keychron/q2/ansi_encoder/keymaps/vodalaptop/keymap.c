@@ -90,7 +90,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case CK_TGI:
             return 110;
         case CK_SPNV:
-            return 120;
+            return 130;
         case CK_SHCL:
             return 120;
         case CK_POS:
