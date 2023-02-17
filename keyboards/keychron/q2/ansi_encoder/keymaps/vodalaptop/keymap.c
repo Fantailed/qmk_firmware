@@ -171,3 +171,16 @@ bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode
     }
     return true;
 }
+
+// Do stuff on layer change
+layer_state_t layer_state_set_user(layer_state_t state) {
+    switch (get_highest_layer(state | default_layer_state)) {
+        case _GAME:
+            autoshift_disable();
+            break;
+        default:
+            autoshift_enable();
+            break;
+    }
+    return state;
+}
