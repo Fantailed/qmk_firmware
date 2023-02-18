@@ -25,8 +25,10 @@ enum custom_keycodes {
     CK_TGG   = TG(_GAME),           // Toggle gaming layer
     CK_VBFC  = RCTL(KC_F),          // Toggle Fullscreen in vbox
     CK_MYAK  = MEH(KC_F12),         // Yakuake with meh
-    CK_OSRA  = OSM(MOD_RALT),       // One-shot right alt
+    CK_OSLC  = OSM(MOD_LCTL),       // One-shot left ctrl
     CK_OSRC  = OSM(MOD_RCTL),       // One-shot right ctrl
+    CK_OSLA  = OSM(MOD_LALT),       // One-shot left alt
+    CK_OSRA  = OSM(MOD_RALT),       // One-shot right alt
     // === Hold/tap dual-function dummies ===
     CK_POS   = DUMMY(KC_0),
     CK_KNOB  = DUMMY(KC_1),
