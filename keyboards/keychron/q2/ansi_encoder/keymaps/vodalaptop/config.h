@@ -11,8 +11,7 @@
 #define AUTO_SHIFT_TIMEOUT 150
 #define AUTO_SHIFT_REPEAT
 
-#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
-#define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
+#define CAPS_WORD_IDLE_TIMEOUT 0
 
 // Disable unneeded RGB animations (saves memory)
 #undef ENABLE_RGB_MATRIX_BREATHING

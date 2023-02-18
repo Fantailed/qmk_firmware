@@ -16,7 +16,7 @@ enum layers {
 
 enum custom_keycodes {
     // === Aliases for normal keycodes ===
-    CK_SHCL  = LSFT_T(KC_CAPS),     // Shift/Caps-Lock
+    CK_RSCL  = RSFT_T(KC_CAPS),     // RShift/Caps-Lock
     CK_SHSL  = RSFT_T(KC_SLSH),     // Mod-tap Slash/RShift
     CK_SPNV  = LT(_NAV, KC_SPC),    // Hold space for toggle nav layer
     CK_TTF   = TT(_FUN),            // Tap-toggle function layer
@@ -30,6 +30,7 @@ enum custom_keycodes {
     // === Hold/tap dual-function dummies ===
     CK_POS   = DUMMY(KC_0),
     CK_KNOB  = DUMMY(KC_1),
+    CK_LSCW  = DUMMY(KC_2),         // LShift/Caps-Word
     // === Plain Placeholders ===
     CK_SM0,     // Secret Macro 0
     // US-Intl. Un-dead-keying

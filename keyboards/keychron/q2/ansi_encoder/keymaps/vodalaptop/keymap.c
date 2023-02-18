@@ -29,7 +29,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,   KC_EQL,  KC_BSLS,          CK_KNOB,
         KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC,  KC_RBRC,  KC_BSPC,          KC_DEL,
         KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,            KC_ENT,           CK_POS,
-        CK_SHCL,          KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,            KC_RSFT, KC_UP,
+        CK_LSCW,          KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,            CK_RSCL, KC_UP,
         KC_LCTL, KC_LWIN, KC_LALT,                            CK_SPNV,                            CK_MYAK, CK_TTF ,  CK_TTS ,  KC_LEFT, KC_DOWN, KC_RGHT),
 
     [_INTL] = LAYOUT_ansi_67(
@@ -43,7 +43,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ESC , _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______,   KC_BSPC,          _______,
         KC_TAB , _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______,   KC_BSLS,          _______,
         KC_CAPS, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,             _______,          _______,
-        KC_LSFT,          _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,             _______, _______,
+        KC_LSFT,          _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,             KC_RSFT, _______,
         _______, KC_NO  , _______,                            KC_SPC ,                            KC_NO  , _______,  _______,   _______, _______, _______),
 
     [_NAV] = LAYOUT_ansi_67(
@@ -91,7 +91,8 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
             return 110;
         case CK_SPNV:
             return 130;
-        case CK_SHCL:
+        case CK_LSCW:
+        case CK_RSCL:
             return 120;
         case CK_POS:
             return 110;
@@ -106,16 +107,19 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 // Define per-key special handling
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     static bool isShifted;
+
+    // On key down
     if (record->event.pressed) {
+
         isShifted = get_mods() & MOD_MASK_SHIFT;
 
         switch (keycode) {
             // Un-dead-key in intl. layout + auto-shift
-            case CK_IQT:
+            case CK_IQT:    // Intl. quote
                 return process_tap_hold_sendstring(record, "' ", "\" ");
-            case CK_IBT:
+            case CK_IBT:    // Intl. backtick
                 return process_tap_hold_sendstring(record, "` ", "~ ");
-            case CK_ICX:
+            case CK_ICX:    // Intl. circumflex
                 if (isShifted) {
                     return process_tap_sendstring(record, "^ ");
                 } else {
@@ -127,6 +131,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return process_tap_hold(record, KC_HOME, KC_END);
             case CK_KNOB:
                 return process_tap_hold(record, CK_VBFC, QK_BOOT);
+            case CK_LSCW:    // LShift/Caps-Word
+                // When tapped
+                if (record->tap.count > 0) {
+                    caps_word_toggle();
+                // When held
+                } else {
+                    register_code16(KC_LSFT);
+                }
+                return false;
 #ifdef SECRET_MACRO_0
             case CK_SM0:
                 if (record->event.pressed) {
@@ -138,6 +151,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             default:
                 // Just let QMK handle the event normally
                 return true;
+        }
+    // On key up
+    } else {
+        switch (keycode) {
+            case CK_LSCW: // LShift/Caps-Word
+                unregister_code16(KC_LSFT);
         }
     }
 
