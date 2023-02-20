@@ -121,9 +121,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return process_tap_hold_sendstring(record, "` ", "~ ");
             case CK_ICX:    // Intl. circumflex
                 if (isShifted) {
-                    return process_tap_sendstring(record, "^ ");
+                    send_string("6 ");
+                    return false;
                 } else {
-                    // Auto-shift does not get detected by isShifted
+                    // Reproduce auto-shift
                     return process_tap_hold_sendstring(record, "6", "^ ");
                 }
             // Simple tap/hold assignments
