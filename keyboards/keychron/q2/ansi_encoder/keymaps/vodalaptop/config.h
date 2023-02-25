@@ -7,6 +7,8 @@
 #define COMBO_SHOULD_TRIGGER
 #define COMBO_TERM 30
 
+#define DYNAMIC_MACRO_DELAY 5   // So that macros work in remote desktop
+
 #define NO_AUTO_SHIFT_ALPHA
 #define AUTO_SHIFT_TIMEOUT 150
 #define AUTO_SHIFT_REPEAT
