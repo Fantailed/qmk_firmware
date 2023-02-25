@@ -4,6 +4,7 @@ enum layers {
     BASE,
     _INTL,
     _GAME,
+    _NUM,
     _NAV,
     _FUN,
     _SYS,
@@ -22,6 +23,7 @@ enum custom_keycodes {
     CK_TTF   = TT(_FUN),            // Tap-toggle function layer
     CK_TTS   = TT(_SYS),            // Tap-toggle sys layer
     CK_TGI   = TG(_INTL),           // Toggle intl layer
+    CK_TGN   = TG(_NUM),            // Toggle numpad layer
     CK_TGG   = TG(_GAME),           // Toggle gaming layer
     CK_VBFC  = RCTL(KC_F),          // Toggle Fullscreen in vbox
     CK_MYAK  = MEH(KC_F12),         // Yakuake with meh
