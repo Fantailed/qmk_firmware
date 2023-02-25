@@ -18,10 +18,16 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
         // Layer indicators
         switch(get_highest_layer(layer_state|default_layer_state)) {
             case BASE:
-                rgb_matrix_set_color_all(CRGB_ICE);
+                rgb_matrix_set_color_all(CRGB_WHITE);
                 break;
             case _INTL:
                 rgb_matrix_set_color_all(CRGB_PEACH);
+                break;
+            case _GAME:
+                rgb_matrix_set_color_all(CRGB_BLUE);
+                break;
+            case _NUM:
+                set_numpad_layer_colors();
                 break;
             case _NAV:
                 rgb_matrix_set_color_all(CRGB_TEAL);
@@ -29,11 +35,8 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
             case _FUN:
                 rgb_matrix_set_color_all(CRGB_LAVENDER);
                 break;
-            case _GAME:
-                rgb_matrix_set_color_all(CRGB_BLUE);
-                break;
             case _SYS:
-                set_kb_sys_colors();
+                set_sys_layer_colors();
                 break;
             default:
                 break;
@@ -43,9 +46,9 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
 }
 
 // Highlights different functional zones by color
-void set_kb_sys_colors() {
+void set_sys_layer_colors() {
     // Default white
-    rgb_matrix_set_color_all(CRGB_WHITE);
+    rgb_matrix_set_color_all(RGB_BLACK);
 
     // Macros
     rgb_matrix_set_color(1, CRGB_SPRINGGREEN);
@@ -67,6 +70,35 @@ void set_kb_sys_colors() {
     // G for game layer
     rgb_matrix_set_color(35, CRGB_BLUE);
 
+    // N for numpad layer
+    rgb_matrix_set_color(50, CRGB_GOLD);
+
     // left meta
     rgb_matrix_set_color(58, CRGB_PEACH);
+}
+
+void set_numpad_layer_colors() {
+    rgb_matrix_set_color_all(RGB_BLACK);
+
+    int numbers[] = {
+         7,  8,  9, 10,
+        22, 23, 24,
+        37, 38, 39,
+        51
+    };
+
+    int operators[] = {
+                        11, 12, // - +
+
+                    40,         // enter
+    50,     52, 53, 54          // *   , . /
+    };
+
+    for (int i = 0; i < 11; i++) {
+        rgb_matrix_set_color(numbers[i], CRGB_YELLOW);
+    }
+
+    for (int i = 0; i < 7; i++) {
+        rgb_matrix_set_color(operators[i], CRGB_SPRINGGREEN);
+    }
 }

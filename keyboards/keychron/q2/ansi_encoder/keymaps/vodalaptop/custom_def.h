@@ -46,15 +46,16 @@ enum custom_keycodes {
 
 // === Custom RGB ===
 // Colors corrected for Akko CS Lavender Purple switches' purple tint
-#define CRGB_WHITE        200, 255,  35
+#define CRGB_WHITE        150, 255,  50
+#define CRGB_OFFWHITE     200, 255,  35
 #define CRGB_RED          255,  38,   8
 #define CRGB_CORAL        255, 240,  50
 #define CRGB_PEACH        255, 220,  20
 #define CRGB_GOLD         230, 200,  10
+#define CRGB_YELLOW       230, 255,   0
 #define CRGB_SPRINGGREEN  120, 255,   0
 #define CRGB_GREEN         75, 250,   0
 #define CRGB_TEAL          50, 255, 100
-#define CRGB_ICE          150, 255,  50
 #define CRGB_BLUE          50, 200, 255
 #define CRGB_DEEP_BLUE      0,  70, 240
 #define CRGB_LAVENDER     200, 200, 200
