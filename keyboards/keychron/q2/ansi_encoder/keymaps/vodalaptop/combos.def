@@ -6,6 +6,10 @@
 
 COMB(WR_MSMID,      KC_BTN3,                KC_BTN1, KC_BTN2)
 
+// Make far away keys easier to reach
+COMB(LSCLN_ENTER,   KC_ENTER,               KC_L, KC_SCLN)
+COMB(QW_ESC,        KC_ESC,                 KC_Q, KC_W)
+
 // VSCode Line Selections
 COMB(HL_EXPAND,     LSFT(LALT(KC_RIGHT)),   KC_H, KC_L)
 COMB(HJ_BEGIN,      LSFT(KC_HOME),          KC_H, KC_J)
