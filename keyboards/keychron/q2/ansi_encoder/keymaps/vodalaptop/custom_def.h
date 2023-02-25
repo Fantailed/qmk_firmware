@@ -33,7 +33,6 @@ enum custom_keycodes {
     CK_OSRA  = OSM(MOD_RALT),       // One-shot right alt
     // === Hold/tap dual-function dummies ===
     CK_POS   = DUMMY(KC_0),
-    CK_KNOB  = DUMMY(KC_1),
     CK_LSCW  = DUMMY(KC_2),         // LShift/Caps-Word
     // === Plain Placeholders ===
     CK_SM0,     // Secret Macro 0

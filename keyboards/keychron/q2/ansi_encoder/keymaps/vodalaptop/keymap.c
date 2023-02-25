@@ -26,7 +26,7 @@
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [BASE] = LAYOUT_ansi_67(
-        KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,   KC_EQL,  KC_BSLS,          CK_KNOB,
+        KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,   KC_EQL,  KC_BSLS,          CK_VBFC,
         KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC,  KC_RBRC,  KC_BSPC,          KC_DEL,
         KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,            KC_ENT,           CK_POS,
         CK_LSCW,          KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,            CK_RSCL, KC_UP,
@@ -61,7 +61,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______,                            _______,                            _______, _______,  _______,   _______, _______, _______),
 
     [_FUN] = LAYOUT_ansi_67(
-        KC_TILD, KC_F1,   KC_F2  ,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9, KC_F10 , KC_F11 ,   KC_F12,   _______,          CK_KNOB,
+        KC_TILD, KC_F1,   KC_F2  ,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9, KC_F10 , KC_F11 ,   KC_F12,   _______,          _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______,   _______,          KC_PSCR,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,             _______,          KC_INS,
         _______,          _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,             _______, KC_PGUP,
@@ -86,10 +86,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
     [BASE]   = { ENCODER_CCW_CW(LCTL(KC_PGUP), LCTL(KC_PGDN)) },
     [_INTL]  = { ENCODER_CCW_CW(LCTL(KC_PGUP), LCTL(KC_PGDN)) },
-    [_NAV]   = { ENCODER_CCW_CW(LCTL(KC_PGUP), LCTL(KC_PGDN)) },
+    [_GAME]  = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
+    [_NAV]   = { ENCODER_CCW_CW(LCTL(KC_PMNS), LCTL(KC_PPLS)) },
     [_FUN]   = { ENCODER_CCW_CW(LSFT(KC_TAB), KC_TAB) },
     [_SYS]   = { ENCODER_CCW_CW(LCTL(KC_PMNS), LCTL(KC_PPLS)) },
-    [_GAME]  = { ENCODER_CCW_CW(LCTL(KC_PGUP), LCTL(KC_PGDN)) },
 };
 #endif
 
@@ -110,8 +110,6 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
             return 100;
         case CK_POS:
             return 110;
-        case CK_KNOB:
-            return 5000;
         default:
             return TAPPING_TERM;
     }
@@ -144,8 +142,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             // Simple tap/hold assignments
             case CK_POS:
                 return process_tap_hold(record, KC_HOME, KC_END);
-            case CK_KNOB:
-                return process_tap_hold(record, CK_VBFC, QK_BOOT);
             case CK_LSCW:    // LShift/Caps-Word
                 // When tapped
                 if (record->tap.count > 0) {
