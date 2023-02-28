@@ -187,7 +187,7 @@ bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode
         case KL_END:
         case QW_ESC:
         case LSCLN_ENTER:
-            return layer_state_is(BASE) || layer_state_is(_INTL);
+            return curr_layer == BASE || curr_layer == _INTL;
         case DELPOS_SM0:
             return layer_state_is(_SYS);
         case AE_GU:
