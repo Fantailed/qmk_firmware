@@ -17,10 +17,10 @@ COMB(JK_SHRINK,     LSFT(LALT(KC_LEFT)),    KC_J, KC_K)
 COMB(KL_END,        LSFT(KC_END),           KC_K, KC_L)
 
 // (G)erman (U)mlauts etc.
-COMB(AE_GU,         RALT(KC_Q),             KC_A, KC_E)
-COMB(OE_GU,         RALT(KC_P),             KC_O, KC_E)
-COMB(UE_GU,         RALT(KC_Y),             KC_U, KC_E)
-COMB(SE_GU,         RALT(KC_S),             KC_S, KC_E)
+COMB(AE_GU,         RALT(KC_Q),             KC_A, KC_SCLN)
+COMB(OE_GU,         RALT(KC_P),             KC_O, KC_SCLN)
+COMB(UE_GU,         RALT(KC_Y),             KC_U, KC_SCLN)
+COMB(SE_GU,         RALT(KC_S),             KC_S, KC_SCLN)
 COMB(EUR_EURO,      RALT(KC_5),             KC_E, KC_U, KC_R)
 
 // Secret Macro

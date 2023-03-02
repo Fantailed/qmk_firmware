@@ -107,7 +107,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
             return 150;
         case CK_LSCW:
         case CK_RSCL:
-            return 100;
+            return 90;
         case CK_POS:
             return 110;
         default:
