@@ -5,7 +5,7 @@
 #define TAPPING_TERM_PER_KEY
 
 #define COMBO_SHOULD_TRIGGER
-#define COMBO_TERM 30
+#define COMBO_TERM 35
 
 #define DYNAMIC_MACRO_DELAY 5   // So that macros work in remote desktop
 

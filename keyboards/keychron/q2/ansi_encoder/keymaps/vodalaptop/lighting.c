@@ -18,19 +18,19 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
         // Layer indicators
         switch(get_highest_layer(layer_state|default_layer_state)) {
             case BASE:
-                rgb_matrix_set_color_all(CRGB_WHITE);
-                break;
-            case _INTL:
                 rgb_matrix_set_color_all(CRGB_PEACH);
                 break;
+            case _INTL:
+                rgb_matrix_set_color_all(CRGB_WHITE);
+                break;
             case _GAME:
-                rgb_matrix_set_color_all(CRGB_BLUE);
+                rgb_matrix_set_color_all(CRGB_TEAL);
                 break;
             case _NUM:
                 set_numpad_layer_colors();
                 break;
             case _NAV:
-                rgb_matrix_set_color_all(CRGB_TEAL);
+                rgb_matrix_set_color_all(CRGB_BLUE);
                 break;
             case _FUN:
                 rgb_matrix_set_color_all(CRGB_LAVENDER);
@@ -68,7 +68,7 @@ void set_sys_layer_colors() {
     rgb_matrix_set_color(12, CRGB_TEAL);
 
     // G for game layer
-    rgb_matrix_set_color(35, CRGB_BLUE);
+    rgb_matrix_set_color(35, CRGB_TEAL);
 
     // N for numpad layer
     rgb_matrix_set_color(50, CRGB_GOLD);
