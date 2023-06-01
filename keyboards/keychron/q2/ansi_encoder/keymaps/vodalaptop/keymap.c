@@ -88,7 +88,7 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
     [_INTL]  = { ENCODER_CCW_CW(LCTL(KC_PGUP), LCTL(KC_PGDN)) },
     [_GAME]  = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
     [_NAV]   = { ENCODER_CCW_CW(LCTL(KC_PMNS), LCTL(KC_PPLS)) },
-    [_FUN]   = { ENCODER_CCW_CW(LSFT(KC_TAB), KC_TAB) },
+    [_FUN]   = { ENCODER_CCW_CW(LALT(KC_PGDN), LALT(KC_PGUP)) },
     [_SYS]   = { ENCODER_CCW_CW(LCTL(KC_PMNS), LCTL(KC_PPLS)) },
 };
 #endif

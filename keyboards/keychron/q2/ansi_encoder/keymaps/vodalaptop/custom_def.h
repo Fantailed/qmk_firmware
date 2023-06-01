@@ -59,3 +59,4 @@ enum custom_keycodes {
 #define CRGB_DEEP_BLUE      0,  70, 240
 #define CRGB_LAVENDER     200, 200, 200
 #define CRGB_PINK         255, 100,  50
+#define CRGB_LPINK        255, 255,  50
