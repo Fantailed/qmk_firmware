@@ -1,5 +1,7 @@
 #pragma once
 
+enum planck_layers { _BASE, _INTL, _LOWER, _RAISE, _ADJUST };
+
 // LT(0, ...) keycodes are dummies used for dual function (tap/hold) keys
 // Keycode defined inside dummy is tap action if desired
 // or arbitrary unique keycode if tap should also be handled specially.
@@ -13,5 +15,6 @@ enum custom_keycodes {
     // US-Intl. Un-dead-keying
     CK_IQT,     // '
     CK_IBT,     // `
+    CK_ITIL,    // ~
     CK_ICX,     // ^
 };
