@@ -126,7 +126,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         isShifted = get_mods() & MOD_MASK_SHIFT;
 
         switch (keycode) {
-            // Un-dead-key in intl. layout + auto-shift
+            // Un-dead-key in intl. layout
             case CK_IQT:    // Intl. quote
                 return process_tap_hold_sendstring(record, "' ", "\" ");
             case CK_IBT:    // Intl. backtick
