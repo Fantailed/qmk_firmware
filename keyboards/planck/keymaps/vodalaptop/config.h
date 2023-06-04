@@ -19,6 +19,10 @@
 #define COMBO_SHOULD_TRIGGER
 #define COMBO_TERM 35
 
+#define TAPPING_TOGGLE 1        // So that layer tap-toggle works immediately
+#define TAPPING_TERM 150        // Default tapping term (a.k.a. hold duration)
+#define TAPPING_TERM_PER_KEY
+
 #ifdef AUDIO_ENABLE
 #    define STARTUP_SONG SONG(PLANCK_SOUND)
 // #define STARTUP_SONG SONG(NO_SOUND)
@@ -27,3 +31,5 @@
         { SONG(QWERTY_SOUND), SONG(COLEMAK_SOUND), SONG(DVORAK_SOUND) }
 #endif
 
+#define ORYX_CONFIGURATOR
+#define PLANCK_EZ_USER_LEDS

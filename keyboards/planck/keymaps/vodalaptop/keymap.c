@@ -35,7 +35,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | Tab  |   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   ;  |  '   |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |LShift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |RShift|
+ * |LShift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |RSftCL|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | Ctrl | Meta | Alt  | ?    |Lower |    Space    |Raise | Left | Down |  Up  |Right |
  * `-----------------------------------------------------------------------------------'
@@ -43,7 +43,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_BASE] = LAYOUT_planck_grid(
     KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
     KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, CK_RSCL,
     KC_LCTL, KC_LGUI, KC_LALT, KC_NO,   LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
 ),
 
@@ -127,6 +127,17 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
 
+// Define per-key tapping terms
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        // case CK_LSCW:
+        case CK_RSCL:
+            return 90;
+        default:
+            return TAPPING_TERM;
+    }
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     static bool isShifted;
     static bool intlIsBase = false;
@@ -136,6 +147,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         isShifted = get_mods() & MOD_MASK_SHIFT;
 
         switch (keycode) {
+            // LED Indicators
+            // RShift/CapsLock
+            case CK_RSCL:
+                if (host_keyboard_led_state().caps_lock) {
+                    planck_ez_right_led_off();
+                } else {
+                    planck_ez_right_led_on();
+                }
+                return true;
+
             // Un-dead-key in intl. layout + auto-shift
             case CK_IQT:  // Intl. quote, triggered on _INTL only
                 return process_noshift_shift_sendstring(isShifted, "' ", "\" ");

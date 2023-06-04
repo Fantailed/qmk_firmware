@@ -8,10 +8,12 @@ enum planck_layers { _BASE, _INTL, _LOWER, _RAISE, _ADJUST };
 #define DUMMY(KC) LT(0, (KC))
 
 enum custom_keycodes {
+    // === Aliases for normal keycodes ===
+    CK_RSCL  = RSFT_T(KC_CAPS),     // RShift/Caps-Lock
     // === Plain Placeholders ===
-    CK_BASE = SAFE_RANGE,  // For switching base layer to BASE
-    CK_INTL,    // For switching base layer to INTL
-    CK_SM0,     // Secret Macro 0
+    CK_BASE = SAFE_RANGE,           // For switching base layer to BASE
+    CK_INTL,                        // For switching base layer to INTL
+    CK_SM0,                         // Secret Macro 0
     // US-Intl. Un-dead-keying
     CK_IQT,     // '
     CK_IBT,     // `
