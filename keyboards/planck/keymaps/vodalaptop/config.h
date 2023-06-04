@@ -16,6 +16,9 @@
 
 #pragma once
 
+#define COMBO_SHOULD_TRIGGER
+#define COMBO_TERM 35
+
 #ifdef AUDIO_ENABLE
 #    define STARTUP_SONG SONG(PLANCK_SOUND)
 // #define STARTUP_SONG SONG(NO_SOUND)

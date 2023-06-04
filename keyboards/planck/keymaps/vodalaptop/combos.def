@@ -1,0 +1,18 @@
+// For basic combos, adding them here should be enough.
+// Though beware that per default, combos are not layer-scoped,
+// so you may want to set up your own layer scoping in keymap.c
+
+//  name         |  result               |  chord keys
+
+// Emulate modifiers
+COMB(LSCLN_ENTER,   KC_ENTER,               KC_L, KC_SCLN)
+COMB(QW_ESC,        KC_ESC,                 KC_Q, KC_W)
+
+// (G)erman (U)mlauts etc.
+COMB(AE_GU,         RALT(KC_Q),             KC_A, KC_SCLN)
+COMB(OE_GU,         RALT(KC_P),             KC_O, KC_SCLN)
+COMB(UE_GU,         RALT(KC_Y),             KC_U, KC_SCLN)
+COMB(SE_GU,         RALT(KC_S),             KC_S, KC_SCLN)
+COMB(EUR_EURO,      RALT(KC_5),             KC_E, KC_U, KC_R)
+
+// Secret Macro

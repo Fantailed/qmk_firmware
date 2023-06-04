@@ -16,6 +16,7 @@
 
 #include QMK_KEYBOARD_H
 #include "custom_def.h"
+#include "g/keymap_combo.h"
 #include "helper_functions.h"
 
 #ifdef AUDIO_ENABLE
