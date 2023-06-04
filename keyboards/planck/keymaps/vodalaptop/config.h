@@ -16,6 +16,8 @@
 
 #pragma once
 
+#define CAPS_WORD_IDLE_TIMEOUT 0
+
 #define COMBO_SHOULD_TRIGGER
 #define COMBO_TERM 35
 

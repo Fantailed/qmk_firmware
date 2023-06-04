@@ -35,7 +35,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | Tab  |   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   ;  |  '   |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |LShift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |RSftCL|
+ * |LSftCW|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |RSftCL|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | Ctrl | Meta | Alt  | ?    |Lower |    Space    |Raise | Left | Down |  Up  |Right |
  * `-----------------------------------------------------------------------------------'
@@ -43,7 +43,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_BASE] = LAYOUT_planck_grid(
     KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
     KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, CK_RSCL,
+    CK_LSCW, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, CK_RSCL,
     KC_LCTL, KC_LGUI, KC_LALT, KC_NO,   LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
 ),
 
@@ -122,7 +122,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 // clang-format on
 
-
 layer_state_t layer_state_set_user(layer_state_t state) {
     return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
@@ -142,30 +141,54 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     static bool isShifted;
     static bool intlIsBase = false;
 
+    if (!is_caps_word_on()) {
+        planck_ez_left_led_off();
+    }
+
     // On key down
     if (record->event.pressed) {
         isShifted = get_mods() & MOD_MASK_SHIFT;
 
         switch (keycode) {
             // LED Indicators
-            // RShift/CapsLock
-            case CK_RSCL:
-                if (host_keyboard_led_state().caps_lock) {
-                    planck_ez_right_led_off();
+            case CK_LSCW:   // LShift/CapsWord
+                // When tapped
+                if (record->tap.count > 0) {
+                    if (is_caps_word_on()) {
+                        caps_word_off();
+                        planck_ez_left_led_off();
+                    } else {
+                        caps_word_on();
+                        planck_ez_left_led_on();
+                        isShifted = true;
+                    }
+                // When held
                 } else {
-                    planck_ez_right_led_on();
+                    register_code16(KC_LSFT);
+                }
+                return false;
+            case CK_RSCL:   // RShift/CapsLock
+                // If tapped
+                if (record->tap.count > 0) {
+                    if (host_keyboard_led_state().caps_lock) {
+                        print("Caps Lock: on -> OFF");
+                        planck_ez_right_led_off();
+                    } else {
+                        print("Caps Lock: off -> ON");
+                        planck_ez_right_led_on();
+                    }
                 }
                 return true;
 
             // Un-dead-key in intl. layout + auto-shift
-            case CK_IQT:  // Intl. quote, triggered on _INTL only
+            case CK_IQT: // Intl. quote, triggered on _INTL only
                 return process_noshift_shift_sendstring(isShifted, "' ", "\" ");
             // Triggered from _RAISE/_LOWER and thus need special logic
-            case CK_IBT:  // Intl. backtick
+            case CK_IBT: // Intl. backtick
                 return process_intl_off_on_sendstring(intlIsBase, "`", "` ");
             case CK_ITIL: // Intl. tilde
                 return process_intl_off_on_sendstring(intlIsBase, "~", "~ ");
-            case CK_ICX:  // Intl. circumflex
+            case CK_ICX: // Intl. circumflex
                 return process_intl_off_on_sendstring(intlIsBase, "^", "^ ");
 
             // Base layer changes
@@ -184,7 +207,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
                 return false;
         }
+    // On key up
+    } else {
+        switch (keycode) {
+            case CK_LSCW: // LShift/Caps-Word
+                unregister_code16(KC_LSFT);
+        }
     }
+
+    // Continue processing key events normally
     return true;
 }
 

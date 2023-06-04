@@ -10,6 +10,8 @@ enum planck_layers { _BASE, _INTL, _LOWER, _RAISE, _ADJUST };
 enum custom_keycodes {
     // === Aliases for normal keycodes ===
     CK_RSCL  = RSFT_T(KC_CAPS),     // RShift/Caps-Lock
+    // === Hold/tap dual-function dummies ===
+    CK_LSCW  = DUMMY(KC_0),
     // === Plain Placeholders ===
     CK_BASE = SAFE_RANGE,           // For switching base layer to BASE
     CK_INTL,                        // For switching base layer to INTL
