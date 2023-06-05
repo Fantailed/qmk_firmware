@@ -10,6 +10,7 @@ enum planck_layers { _BASE, _INTL, _LOWER, _RAISE, _ADJUST };
 enum custom_keycodes {
     // === Aliases for normal keycodes ===
     CK_RSCL  = RSFT_T(KC_CAPS),     // RShift/Caps-Lock
+    CK_YAK   = LGUI(KC_F12),        // Yakuake with Meta+F12
     CK_MYAK  = MEH(KC_F12),         // Yakuake with meh
     // === Hold/tap dual-function dummies ===
     CK_LSCW  = DUMMY(KC_0),
