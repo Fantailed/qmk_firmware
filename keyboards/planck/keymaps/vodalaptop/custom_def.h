@@ -1,6 +1,13 @@
 #pragma once
 
-enum planck_layers { _BASE, _INTL, _LOWER, _RAISE, _ADJUST };
+enum planck_layers {
+    _BASE,
+    _INTL,
+    _LOWER,
+    _RAISE,
+    _NAV,
+    _ADJUST
+};
 
 // LT(0, ...) keycodes are dummies used for dual function (tap/hold) keys
 // Keycode defined inside dummy is tap action if desired
@@ -12,6 +19,7 @@ enum custom_keycodes {
     CK_RSCL  = RSFT_T(KC_CAPS),     // RShift/Caps-Lock
     CK_YAK   = LGUI(KC_F12),        // Yakuake with Meta+F12
     CK_MYAK  = MEH(KC_F12),         // Yakuake with meh
+    CK_SPNV  = LT(_NAV, KC_SPC),    // Hold space for toggle nav layer
     // === Hold/tap dual-function dummies ===
     CK_LSCW  = DUMMY(KC_0),
     // === Plain Placeholders ===

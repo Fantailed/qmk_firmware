@@ -37,14 +37,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |LSftCW|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |RSftCL|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Ctrl | Meta | Alt  |Yakuak|Lower |    Space    |Raise | Left | Down |  Up  |Right |
+ * | Ctrl | Meta | Alt  |Yakuak|Lower |  Space/Nav  |Raise | Left | Down |  Up  |Right |
  * `-----------------------------------------------------------------------------------'
  */
 [_BASE] = LAYOUT_planck_grid(
-    KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
-    KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-    CK_LSCW, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, CK_RSCL,
-    KC_LCTL, KC_LGUI, KC_LALT, CK_YAK, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+    KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,   KC_I,    KC_O,    KC_P,    KC_BSPC,
+    KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,   KC_K,    KC_L,    KC_SCLN, KC_QUOT,
+    CK_LSCW, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,   KC_COMM, KC_DOT,  KC_SLSH, CK_RSCL,
+    KC_LCTL, KC_LGUI, KC_LALT, CK_YAK, LOWER, CK_SPNV, CK_SPNV,   RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
 ),
 
 /* INTL Dead Keys (Win Style)
@@ -101,6 +101,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_RCTL, KC_RGUI, KC_RALT, _______, _______, _______, _______, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END
 ),
 
+/* Navigation layer (Mouse emulation) + NumPad
+ * ,-----------------------------------------------------------------------------------.
+ * |RClick| M <  | M v  | M ^  | M >  |LClick|      |  7   |  8   |  9   |  -   |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      | W <  | W v  | W ^  | W >  |      |      |  4   |  5   |  6   |  +   |  =   |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      | A <  | A v  | A ^  | A >  |      |Space |  1   |  2   |  3   |  /   |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |             |  0   |  ,   |  .   |  *   |      |
+ * `-----------------------------------------------------------------------------------'
+ */
+[_NAV] = LAYOUT_planck_grid(
+    KC_BTN2, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, KC_BTN1, _______, KC_P7,   KC_P8,   KC_P9,   KC_PMNS, _______,
+    _______, KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, _______, _______, KC_P4,   KC_P5,   KC_P6,   KC_PPLS, KC_PEQL,
+    _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, KC_SPC,  KC_P1,   KC_P2,   KC_P3,   KC_PSLS, _______,
+    _______, _______, _______, _______, _______, _______, _______, KC_P0,   KC_COMM, KC_PDOT, KC_PAST, _______
+),
+
 /* Adjust (Lower + Raise)
  * ,-----------------------------------------------------------------------------------.
  * |      | DM 1 | DM 2 |REC 1 |REC 2 | Prev | Play | Next | Mute | Vol- | Vol+ |Reset |
@@ -132,6 +150,8 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case CK_LSCW:
         case CK_RSCL:
             return 90;
+        case CK_SPNV:
+            return 150;
         default:
             return TAPPING_TERM;
     }
