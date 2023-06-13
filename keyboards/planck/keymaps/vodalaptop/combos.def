@@ -4,7 +4,7 @@
 
 //  name         |  result               |  chord keys
 
-// Emulate modifiers
+// Emulate keys
 COMB(LSCLN_ENTER,   KC_ENTER,               KC_L, KC_SCLN)
 COMB(QW_ESC,        KC_ESC,                 KC_Q, KC_W)
 
@@ -14,5 +14,6 @@ COMB(OE_GU,         RALT(KC_P),             KC_O, KC_SCLN)
 COMB(UE_GU,         RALT(KC_Y),             KC_U, KC_SCLN)
 COMB(SE_GU,         RALT(KC_S),             KC_S, KC_SCLN)
 COMB(EUR_EURO,      RALT(KC_5),             KC_E, KC_U, KC_R)
+COMB(DEG_DEG,       RALT(LSFT(KC_SCLN)),    KC_D, KC_E, KC_G)
 
 // Secret Macro
