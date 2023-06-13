@@ -19,7 +19,7 @@
 #define CAPS_WORD_IDLE_TIMEOUT 0
 
 #define COMBO_SHOULD_TRIGGER
-#define COMBO_TERM 35
+#define COMBO_TERM 45
 
 #define TAPPING_TOGGLE 1        // So that layer tap-toggle works immediately
 #define TAPPING_TERM 150        // Default tapping term (a.k.a. hold duration)
