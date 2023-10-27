@@ -30,5 +30,15 @@
     },
     "clangd.arguments": [
         "--header-insertion=never"
+    ],
+    "favorites.resources": [
+        {
+            "filePath": "keyboards/planck",
+            "group": "Default"
+        },
+        {
+            "filePath": "keyboards/planck/keymaps/vodalaptop",
+            "group": "Default"
+        }
     ]
 }

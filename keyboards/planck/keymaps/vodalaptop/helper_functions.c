@@ -47,7 +47,7 @@ bool process_tap_hold(keyrecord_t *record, uint16_t tap_key, uint16_t hold_key) 
     // When tapped
     if (record->tap.count > 0) {
         tap_code16(tap_key);
-        // When held
+    // When held
     } else {
         tap_code16(hold_key);
     }
@@ -58,7 +58,7 @@ bool process_tap_hold_sendstring(keyrecord_t *record, const char *tap_string, co
     // When tapped
     if (record->tap.count > 0) {
         send_string(tap_string);
-        // When held
+    // When held
     } else {
         send_string(hold_string);
     }
@@ -68,6 +68,7 @@ bool process_tap_hold_sendstring(keyrecord_t *record, const char *tap_string, co
 bool process_noshift_shift_sendstring(bool isShifted, const char *noshift_string, const char *shift_string) {
     if (isShifted) {
         send_string(shift_string);
+        register_code(KC_LSFT);     // Restore shifted state because send_string unshifts at the end
     } else {
         send_string(noshift_string);
     }
