@@ -103,7 +103,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Navigation layer (Mouse emulation) + NumPad
  * ,-----------------------------------------------------------------------------------.
- * |RClick| M <  | M v  | M ^  | M >  |LClick|      |  7   |  8   |  9   |  -   |      |
+ * |RClick| M <  | M v  | M ^  | M >  |LClick|MClick|  7   |  8   |  9   |  -   |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      | W <  | W v  | W ^  | W >  |      |      |  4   |  5   |  6   |  +   |  =   |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -113,7 +113,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_NAV] = LAYOUT_planck_grid(
-    KC_BTN2, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, KC_BTN1, _______, KC_P7,   KC_P8,   KC_P9,   KC_PMNS, _______,
+    KC_BTN2, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, KC_BTN1, KC_BTN3, KC_P7,   KC_P8,   KC_P9,   KC_PMNS, _______,
     _______, KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, _______, _______, KC_P4,   KC_P5,   KC_P6,   KC_PPLS, KC_PEQL,
     _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, KC_SPC,  KC_P1,   KC_P2,   KC_P3,   KC_PSLS, _______,
     _______, _______, _______, _______, _______, _______, _______, KC_P0,   KC_COMM, KC_PDOT, KC_PAST, _______
